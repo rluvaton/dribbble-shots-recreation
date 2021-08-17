@@ -6,28 +6,35 @@ import DribbbleIcon from '../../../../common/components/DribbbleIcon';
 
 const { Text, Link } = Typography;
 
+export type ShotTitleProps = Pick<Shot, 'name' | 'link' | 'originalShotLink'>;
 
-const ShotTitle: React.FC<Shot> = (shot) => {
+const ShotTitle: React.FC<ShotTitleProps> = ({ name, link, originalShotLink }) => {
   // We wrapping the name with fragment so it'll be a component
-  let titleComponent = <>{shot.name}</>;
+  let titleComponent = <>{name}</>;
 
-  if (shot.link) {
+  if (link) {
     titleComponent = (
       <Tooltip title="Click to enter the component">
-        <Link href={shot.link}>{titleComponent}</Link>
+        <Link href={link}>{name}</Link>
       </Tooltip>
     )
   }
 
-  return (
-    <Text className={styles['shot-title']}>
+  let originalShotComponent = null;
 
+  if (originalShotLink) {
+    originalShotComponent = (
       <Tooltip title="Original Shot">
-        <Link href={shot.originalShotLink} className={styles['shot-link']}>
+        <Link href={originalShotLink} className={styles['shot-link']}>
           <DribbbleIcon style={{ fontSize: '20px' }}/>
         </Link>
       </Tooltip>
+    );
+  }
 
+  return (
+    <Text className={styles['shot-title']}>
+      {originalShotComponent}
       <Text>{titleComponent}</Text>
     </Text>
   );

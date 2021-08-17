@@ -47,5 +47,9 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
     ]
+  },
+  "devDependencies": {
+    "@types/faker": "^5.5.8",
+    "faker": "^5.5.3"
   }
 }
