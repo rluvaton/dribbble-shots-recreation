@@ -1,5 +1,6 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ShotTitle, { ShotTitleProps } from './';
 import faker from 'faker';
 
@@ -49,7 +50,7 @@ describe('ShotTitle', () => {
     const baseDom = render(<ShotTitle {...shot}/>);
 
     // Trigger the tooltip to be displayed
-    fireEvent.mouseOver(baseDom.getByText(shot.name));
+    userEvent.hover(baseDom.getByText(shot.name));
 
     // Assert
     await expect(
@@ -88,7 +89,7 @@ describe('ShotTitle', () => {
 
     const dribbbleIconLink = baseDom.container.querySelector('[href]');
     // Trigger the tooltip to be displayed
-    fireEvent.mouseOver(dribbbleIconLink as Element);
+    userEvent.hover(dribbbleIconLink as Element);
 
     // Assert
     await expect(
