@@ -10,7 +10,7 @@ export type ShotTitleProps = Pick<Shot, 'name' | 'link' | 'originalShotLink'>;
 
 const ShotTitle: React.FC<ShotTitleProps> = ({ name, link, originalShotLink }) => {
   // We wrapping the name with fragment so it'll be a component
-  let titleComponent = <>{name}</>;
+  let titleComponent = <Text>{name}</Text>;
 
   if (link) {
     titleComponent = (
@@ -33,10 +33,10 @@ const ShotTitle: React.FC<ShotTitleProps> = ({ name, link, originalShotLink }) =
   }
 
   return (
-    <Text className={styles['shot-title']}>
+    <div className={styles['shot-title']}>
       {originalShotComponent}
-      <Text>{titleComponent}</Text>
-    </Text>
+      <div>{titleComponent}</div>
+    </div>
   );
 }
 
