@@ -21,11 +21,11 @@ describe('ShotPreview', () => {
     const { container } = render(<ShotPreview {...shot}/>);
 
     // Assert
-    expect(screen.queryByText(shot.name)).toBeInTheDocument();
-    expect(screen.queryByText(shot.description as string)).toBeInTheDocument();
-    expect(screen.queryByTestId(shotComponentTestId)).toBeInTheDocument();
-    expect(screen.queryByTestId(shotComponentTestId)).toBeInTheDocument();
+    screen.getByText(shot.name);
+    screen.getByText(shot.description as string);
+    screen.getByTestId(shotComponentTestId);
 
+    // Check that all the links exists
     const allLinkElements = container.querySelectorAll('[href]');
     const links = Array.from(allLinkElements).map((linkElement: {href?: string} & any) => linkElement.href);
 
