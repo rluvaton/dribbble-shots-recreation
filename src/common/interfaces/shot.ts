@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface Shot {
   id: string;
   name: string;
@@ -9,5 +11,5 @@ export interface Shot {
   // The Dribbble Shot
   originalShotLink?: string;
 
-  component: unknown;
+  component: React.Component;
 }

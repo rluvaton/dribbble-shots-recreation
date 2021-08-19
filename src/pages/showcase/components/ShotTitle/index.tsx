@@ -3,8 +3,9 @@ import styles from './index.module.scss';
 import { Tooltip, Typography } from 'antd';
 import { Shot } from '../../../../common/interfaces/shot';
 import DribbbleIcon from '../../../../common/components/DribbbleIcon';
+import { Link } from 'react-router-dom';
 
-const { Text, Link } = Typography;
+const { Text, Link: AntdLink } = Typography;
 
 export type ShotTitleProps = Pick<Shot, 'name' | 'link' | 'originalShotLink'>;
 
@@ -15,7 +16,7 @@ const ShotTitle: React.FC<ShotTitleProps> = ({ name, link, originalShotLink }) =
   if (link) {
     titleComponent = (
       <Tooltip title="Click to enter the component">
-        <Link href={link}>{name}</Link>
+        <Link to={link} component={AntdLink}>{name}</Link>
       </Tooltip>
     )
   }
@@ -25,9 +26,9 @@ const ShotTitle: React.FC<ShotTitleProps> = ({ name, link, originalShotLink }) =
   if (originalShotLink) {
     originalShotComponent = (
       <Tooltip title="Original Shot">
-        <Link href={originalShotLink} className={styles['shot-link']}>
+        <AntdLink href={originalShotLink} className={styles['shot-link']}>
           <DribbbleIcon style={{ fontSize: '20px' }}/>
-        </Link>
+        </AntdLink>
       </Tooltip>
     );
   }

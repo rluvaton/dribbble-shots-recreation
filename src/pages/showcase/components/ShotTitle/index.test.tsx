@@ -5,8 +5,9 @@ import ShotTitle, { ShotTitleProps } from './';
 import { Shot } from '../../../../common/interfaces/shot';
 import { getAllHrefInContainer } from '../../../../test-helpers/utils';
 import { shotBuilder } from '../../../../test-helpers/entities-builders';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-const wrapUriWithCurrentUrl = (uri: string) => window.location.href + uri;
+const wrapUriWithCurrentUrl = (uri: string) => window.location.origin + uri;
 
 describe('ShotTitle', () => {
 
@@ -44,7 +45,7 @@ describe('ShotTitle', () => {
     const shot = shotTitleBuilder('name', 'link');
 
     // Act
-    const { container } = render(<ShotTitle {...shot}/>);
+    const { container } = render(<ShotTitle {...shot}/>, { wrapper: Router });
 
     // Assert
     const titleLinkElement = screen.getByText(shot.name);
@@ -60,17 +61,18 @@ describe('ShotTitle', () => {
     const shot = shotTitleBuilder('name', 'link');
 
     // Act
-    const baseDom = render(<ShotTitle {...shot}/>);
+    const { container } = render(<ShotTitle {...shot}/>, { wrapper: Router });
+
 
     // Trigger the tooltip to be displayed
-    act(() => userEvent.hover(baseDom.getByText(shot.name)));
+    act(() => userEvent.hover(screen.getByText(shot.name)));
 
     // Assert
     await expect(
-      baseDom.findByText('Click to enter the component'),
+      screen.findByText('Click to enter the component'),
     ).resolves.toBeInTheDocument();
 
-    const allLinkElements = getAllHrefInContainer(baseDom.container);
+    const allLinkElements = getAllHrefInContainer(container);
 
     expect(allLinkElements).toHaveLength(1);
     expect(allLinkElements).toContain(wrapUriWithCurrentUrl(shot.link as string));
@@ -81,7 +83,7 @@ describe('ShotTitle', () => {
     const shot = shotTitleBuilder('name', 'originalShotLink');
 
     // Act
-    const { container } = render(<ShotTitle {...shot}/>);
+    const { container } = render(<ShotTitle {...shot}/>, { wrapper: Router });
 
     // Assert
     const allLinkElements = getAllHrefInContainer(container);
@@ -95,7 +97,7 @@ describe('ShotTitle', () => {
     const shot = shotTitleBuilder('name', 'originalShotLink');
 
     // Act
-    const baseDom = render(<ShotTitle {...shot}/>);
+    const baseDom = render(<ShotTitle {...shot}/>, { wrapper: Router });
 
     const dribbbleIconLink = baseDom.container.querySelector('[href]');
 
@@ -118,7 +120,7 @@ describe('ShotTitle', () => {
     const shot = shotTitleBuilder();
 
     // Act
-    const { container } = render(<ShotTitle {...shot}/>);
+    const { container } = render(<ShotTitle {...shot}/>, { wrapper: Router });
 
     // Assert
     screen.getByText(shot.name);
@@ -131,4 +133,5 @@ describe('ShotTitle', () => {
     expect(allLinkElements).toContain(shot.originalShotLink);
   });
 
+  it.todo(`should navigate to the link when pressing the name`);
 });

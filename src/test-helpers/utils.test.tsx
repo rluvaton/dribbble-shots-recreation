@@ -2,6 +2,7 @@ import { render } from '@testing-library/react';
 import { getAllHrefInContainer } from './utils';
 import React from 'react';
 import faker from 'faker';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 describe('utils', () => {
   describe('getAllHrefInContainer', () => {
@@ -39,6 +40,23 @@ describe('utils', () => {
       // Assert
       expect(allLinkElements).toHaveLength(1);
       expect(allLinkElements).toContain(link);
+    });
+
+    it('should return array with 1 item when there is only one <Link> elements with to attribute', () => {
+      // Arrange
+      const link = `/${faker.internet.domainWord()}`;
+      const { container } = render(
+        <Router>
+          <Link to={link}>something</Link>
+        </Router>,
+      );
+
+      // Act
+      const allLinkElements = getAllHrefInContainer(container);
+
+      // Assert
+      expect(allLinkElements).toHaveLength(1);
+      expect(allLinkElements).toContain(window.location.origin + link);
     });
 
     it('should return array with multiple links when there is div element with multiple <a> tags with href attributes', () => {

@@ -4,6 +4,7 @@ import type ShowcasePageType from './';
 import { Shot } from '../../common/interfaces/shot';
 import * as faker from 'faker';
 import { shotBuilder } from '../../test-helpers/entities-builders';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('ShowcasePage', () => {
 
@@ -61,7 +62,7 @@ describe('ShowcasePage', () => {
     const ShowcasePage = mockShotsAndGetComponent(shots);
 
     // Act
-    render(<ShowcasePage/>);
+    render(<ShowcasePage/>, {wrapper: Router});
 
     // Assert
     screen.getByText('Showcase');

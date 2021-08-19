@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import ShotPreview from './';
 import { Shot } from '../../../../common/interfaces/shot';
 import { shotBuilder } from '../../../../test-helpers/entities-builders';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('ShotPreview', () => {
   it('should render the component and contain the shot name, description, link, originalShotLink and component', () => {
@@ -15,7 +16,7 @@ describe('ShotPreview', () => {
     });
 
     // Act
-    const { container } = render(<ShotPreview {...shot}/>);
+    const { container } = render(<ShotPreview {...shot}/>, { wrapper: Router });
 
     // Assert
     screen.getByText(shot.name);
@@ -28,7 +29,7 @@ describe('ShotPreview', () => {
 
     // The component link and the original shot link
     expect(allLinkElements).toHaveLength(2);
-    expect(links).toContain(`${window.location.origin}/${shot.link}`);
+    expect(links).toContain(window.location.origin + shot.link);
     expect(links).toContain(shot.originalShotLink);
   });
 });
