@@ -1,122 +1,134 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ShotTitle, { ShotTitleProps } from './';
-import faker from 'faker';
+import { Shot } from '../../../../common/interfaces/shot';
+import { getAllHrefInContainer } from '../../../../test-helpers/utils';
+import { shotBuilder } from '../../../../test-helpers/entities-builders';
+
+const wrapUriWithCurrentUrl = (uri: string) => window.location.href + uri;
 
 describe('ShotTitle', () => {
 
+  function shotTitleBuilder(...keysToInclude: (keyof ShotTitleProps)[]): ShotTitleProps {
+
+    // If no key to include has been provided, set all keys
+    if (keysToInclude.length === 0) {
+      keysToInclude = ['name', 'link', 'originalShotLink'];
+    }
+
+    return shotBuilder({
+      // @ts-ignore TypeScript scream about the return type, but this is done exactly as in the docs and it works
+      map: (shot: Shot) => {
+        return (keysToInclude.reduce((shotTitle, key) => ({ ...shotTitle, [key]: shot[key] }), {}));
+      },
+    })
+  }
+
   it('should render the component and contain the shot.name', () => {
     // Arrange
-    const shot: ShotTitleProps = {
-      name: faker.name.title(),
-    }
-
-    // Act
-    render(<ShotTitle {...shot}/>);
-
-    // Assert
-    const shotTitleElement = screen.getByText(shot.name);
-
-    expect(shotTitleElement).toBeInTheDocument();
-    expect(shotTitleElement).not.toHaveAttribute('href', shot.link);
-  });
-
-  it('should render the component and contain the shot.name and the link', () => {
-    // Arrange
-    const shot: ShotTitleProps = {
-      name: faker.name.title(),
-      link: faker.internet.url(),
-    }
-
-    // Act
-    render(<ShotTitle {...shot}/>);
-
-    // Assert
-    const titleLinkElement = screen.getByText(shot.name);
-
-    expect(titleLinkElement).toBeInTheDocument();
-    expect(titleLinkElement).toHaveAttribute('href', shot.link);
-  });
-
-  it(`should display the name's tooltip when hovering over the name`, async () => {
-    // Arrange
-    const shot: ShotTitleProps = {
-      name: faker.name.title(),
-      link: faker.internet.url(),
-    }
-
-    // Act
-    const baseDom = render(<ShotTitle {...shot}/>);
-
-    // Trigger the tooltip to be displayed
-    userEvent.hover(baseDom.getByText(shot.name));
-
-    // Assert
-    await expect(
-      baseDom.findByText('Click to enter the component'),
-    ).resolves.toBeInTheDocument();
-  });
-
-  it('should render the component and contain the shot.name and the original shot link', () => {
-    // Arrange
-    const shot: ShotTitleProps = {
-      name: faker.name.title(),
-      originalShotLink: faker.internet.url(),
-    }
+    const shot = shotTitleBuilder('name');
 
     // Act
     const { container } = render(<ShotTitle {...shot}/>);
 
     // Assert
-    // Search by element containing href
-    const originalShotLinkElement = container.querySelector('[href]');
+    screen.getByText(shot.name);
 
-    expect(originalShotLinkElement).toBeInTheDocument();
-    expect(originalShotLinkElement).toHaveAttribute('href', shot.originalShotLink);
+    const allLinkElements = getAllHrefInContainer(container);
+    expect(allLinkElements).toHaveLength(0);
+  });
+
+  it('should render the component and contain the shot.name and the link', () => {
+    // Arrange
+    const shot = shotTitleBuilder('name', 'link');
+
+    // Act
+    const { container } = render(<ShotTitle {...shot}/>);
+
+    // Assert
+    const titleLinkElement = screen.getByText(shot.name);
+
+    expect(titleLinkElement).toHaveAttribute('href', shot.link);
+
+    const allLinkElements = getAllHrefInContainer(container);
+    expect(allLinkElements).toHaveLength(1);
+  });
+
+  it(`should display the name's tooltip when hovering over the name`, async () => {
+    // Arrange
+    const shot = shotTitleBuilder('name', 'link');
+
+    // Act
+    const baseDom = render(<ShotTitle {...shot}/>);
+
+    // Trigger the tooltip to be displayed
+    act(() => userEvent.hover(baseDom.getByText(shot.name)));
+
+    // Assert
+    await expect(
+      baseDom.findByText('Click to enter the component'),
+    ).resolves.toBeInTheDocument();
+
+    const allLinkElements = getAllHrefInContainer(baseDom.container);
+
+    expect(allLinkElements).toHaveLength(1);
+    expect(allLinkElements).toContain(wrapUriWithCurrentUrl(shot.link as string));
+  });
+
+  it('should render the component and contain the shot.name and the original shot link', () => {
+    // Arrange
+    const shot = shotTitleBuilder('name', 'originalShotLink');
+
+    // Act
+    const { container } = render(<ShotTitle {...shot}/>);
+
+    // Assert
+    const allLinkElements = getAllHrefInContainer(container);
+
+    expect(allLinkElements).toHaveLength(1);
+    expect(allLinkElements).toContain(shot.originalShotLink);
   });
 
   it(`should display the original shot link's tooltip when hovering over the original shot link`, async () => {
     // Arrange
-    const shot: ShotTitleProps = {
-      name: faker.name.title(),
-      originalShotLink: faker.internet.url(),
-    }
+    const shot = shotTitleBuilder('name', 'originalShotLink');
 
     // Act
-
     const baseDom = render(<ShotTitle {...shot}/>);
 
     const dribbbleIconLink = baseDom.container.querySelector('[href]');
+
     // Trigger the tooltip to be displayed
-    userEvent.hover(dribbbleIconLink as Element);
+    act(() => userEvent.hover(dribbbleIconLink as Element));
 
     // Assert
     await expect(
       baseDom.findByText('Original Shot'),
     ).resolves.toBeInTheDocument();
+
+    const allLinkElements = getAllHrefInContainer(baseDom.container);
+
+    expect(allLinkElements).toHaveLength(1);
+    expect(allLinkElements).toContain(shot.originalShotLink);
   });
 
   it('should render the component and contain the shot.name, shot.link and shot.originalShotLink', () => {
     // Arrange
-    const shot: ShotTitleProps = {
-      name: faker.name.title(),
-      link: faker.internet.url(),
-      originalShotLink: faker.internet.url(),
-    }
+    const shot = shotTitleBuilder();
 
     // Act
-    const {container} = render(<ShotTitle {...shot}/>);
+    const { container } = render(<ShotTitle {...shot}/>);
 
     // Assert
-    const titleLinkElement = screen.getByText(shot.name);
+    screen.getByText(shot.name);
 
-    expect(titleLinkElement).toBeInTheDocument();
+    const allLinkElements = getAllHrefInContainer(container);
 
-    const allLinkElements = container.querySelectorAll('[href]');
-
-    // The component link and the original shot link
     expect(allLinkElements).toHaveLength(2);
+
+    expect(allLinkElements).toContain(wrapUriWithCurrentUrl(shot.link as string));
+    expect(allLinkElements).toContain(shot.originalShotLink);
   });
 
 });
