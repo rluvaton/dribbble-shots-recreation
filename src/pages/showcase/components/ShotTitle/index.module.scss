@@ -1,0 +1,11 @@
+.shot-title {
+  display: flex;
+  align-items: center;
+
+  > .shot-link {
+    // Without this the `a` element won't be the same height as the icon (caused by antd card)
+    line-height: 1;
+
+    margin-right: 5px;
+  }
+}
