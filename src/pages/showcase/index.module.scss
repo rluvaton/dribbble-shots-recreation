@@ -1,29 +1,31 @@
 .layout {
   height: 100%;
-}
 
-.title {
-  text-align: center;
-  color: white !important;
-}
+  .title {
+    text-align: center;
+    color: white !important;
+  }
 
-.content {
-  padding: 25px;
-}
+  .content {
+    padding: 25px;
 
-.showcase-container {
-  background-color: #F5F5F5;
 
-  display: grid;
+    .showcaseContainer {
+      background-color: #F5F5F5;
 
-  // Max of 4 items in each row, when resizing the width of the page the number of column should reduce
-  //
-  // We're using `#{"max(150px, 24%)"}` because using max with px and % are unsupported,
-  // so this is a workaround from [here](https://github.com/sass/node-sass/issues/2815#issuecomment-574038619)
-  //
-  // We're using 24% because if we use 25% it will create 3 columns in each row (at max) instead of 4
-  grid-template-columns: repeat(auto-fill, minmax(#{"max(150px, 24%)"}, 1fr));
+      display: grid;
 
-  // TODO (rluvaton): make the rows fill the screen
-  gap: 10px;
+      // Max of 4 items in each row, when resizing the width of the page the number of column should reduce
+      //
+      // We're using `#{"max(150px, 24%)"}` because using max with px and % are unsupported,
+      // so this is a workaround from [here](https://github.com/sass/node-sass/issues/2815#issuecomment-574038619)
+      //
+      // We're using 24% because if we use 25% it will create 3 columns in each row (at max) instead of 4
+      grid-template-columns: repeat(auto-fill, minmax(#{"max(150px, 24%)"}, 1fr));
+
+      // TODO (rluvaton): make the rows fill the screen
+      gap: 10px;
+    }
+
+  }
 }
