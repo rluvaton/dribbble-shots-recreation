@@ -10,8 +10,8 @@ export const shotBuilder = build<Shot>('Shot', {
     link: fake(f => `/${f.internet.domainWord()}`),
     originalShotLink: fake(f => `${f.internet.url()}/`),
 
-    // We cast it to any as the value must be either string or Field (internal @jackfranklin/test-data-bot type)
-    component: <></> as any,
+    // We cast it to any as the value must be either string or Field (internal @jackfranklin/test-data-bot type) although it can access functions
+    createComponent: (() => <></>) as any,
   },
 });
 

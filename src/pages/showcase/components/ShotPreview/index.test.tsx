@@ -11,7 +11,7 @@ describe('ShotPreview', () => {
     const shotComponentTestId = 'shot-component';
     const shot: Shot = shotBuilder({
       overrides: {
-        component: <div data-testid={shotComponentTestId}/> as any,
+        createComponent: (() => <div data-testid={shotComponentTestId}/>) as any,
       },
     });
 

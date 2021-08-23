@@ -53,7 +53,7 @@ describe('ShowcasePage', () => {
       shotBuilder({
         // @ts-ignore TypeScript scream about the return type, but this is done exactly as in the docs and it works
         map: (shot: ShotWithDataTestId) => {
-          shot.component = <span data-testid={getShotComponentTestId(shot)}>Hello from shot {shot.id}</span>
+          shot.createComponent = () => <span data-testid={getShotComponentTestId(shot)}>Hello from shot {shot.id}</span>
           return shot;
         },
       }),
