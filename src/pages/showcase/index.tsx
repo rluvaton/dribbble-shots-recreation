@@ -10,14 +10,14 @@ const { Header, Content } = Layout;
 
 const ShowcasePage: React.FC = () => {
   return (
-    <Layout className={styles['layout']}>
+    <Layout className={styles.layout}>
 
       <Header>
-        <Title className={styles['title']}>Showcase</Title>
+        <Title className={styles.title}>Showcase</Title>
       </Header>
 
-      <Content className={styles['content']}>
-        <div className={styles['showcase-container']}>
+      <Content className={styles.content}>
+        <div className={styles.showcaseContainer}>
           {allShots.map((shot) => <ShotPreview key={shot.id} {...shot} />)}
         </div>
       </Content>

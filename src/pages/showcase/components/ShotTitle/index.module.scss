@@ -1,8 +1,8 @@
-.shot-title {
+.shotTitle {
   display: flex;
   align-items: center;
 
-  > .shot-link {
+  > .shotLink {
     // Without this the `a` element won't be the same height as the icon (caused by antd card)
     line-height: 1;
 

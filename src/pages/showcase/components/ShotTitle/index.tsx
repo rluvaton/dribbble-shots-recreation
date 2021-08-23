@@ -26,7 +26,7 @@ const ShotTitle: React.FC<ShotTitleProps> = ({ name, link, originalShotLink }) =
   if (originalShotLink) {
     originalShotComponent = (
       <Tooltip title="Original Shot">
-        <AntdLink href={originalShotLink} className={styles['shot-link']}>
+        <AntdLink href={originalShotLink} className={styles.shotLink}>
           <DribbbleIcon style={{ fontSize: '20px' }}/>
         </AntdLink>
       </Tooltip>
@@ -34,7 +34,7 @@ const ShotTitle: React.FC<ShotTitleProps> = ({ name, link, originalShotLink }) =
   }
 
   return (
-    <div className={styles['shot-title']}>
+    <div className={styles.shotTitle}>
       {originalShotComponent}
       <div>{titleComponent}</div>
     </div>
