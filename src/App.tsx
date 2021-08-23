@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { allShots } from './pages/shots';
 
 function App() {
-  const routes = allShots.map(({ id, link, component }) => ({ id, link, component }))
+  const routes = allShots.map(({ id, link, createComponent }) => ({ id, link, createComponent }))
   return (
     <Router>
       <Switch>
@@ -14,7 +14,7 @@ function App() {
           <ShowcasePage/>
         </Route>
 
-        {routes.map(({ id, link, component }) => <Route key={id} exact path={link}>{component}</Route>)}
+        {routes.map(({ id, link, createComponent }) => <Route key={id} exact path={link}>{createComponent()}</Route>)}
 
         <Route path="*">
           {/* Redirect to showcase */}

@@ -23,7 +23,8 @@ describe('shotBuilder', () => {
     expect(typeof shot.description).toEqual('string');
     expect(typeof shot.link).toEqual('string');
     expect(typeof shot.originalShotLink).toEqual('string');
-    expect(isReactFragment(shot.component)).toBeTruthy();
+    expect(typeof shot.createComponent).toEqual('function');
+    expect(isReactFragment(shot.createComponent())).toBeTruthy();
   });
 });
 
