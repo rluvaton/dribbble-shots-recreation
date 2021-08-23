@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { Shot } from '../../../../common/interfaces/shot';
 import ShotTitle from '../ShotTitle';
+import ShotCover from '../ShotCover';
 
 const { Meta } = Card;
 
@@ -11,7 +12,7 @@ const ShotPreview: React.FC<Shot> = (shot) => {
     <Card
       bordered={false}
       hoverable
-      cover={shot.createComponent()}
+      cover={<ShotCover>{shot.createComponent()}</ShotCover>}
     >
       <Meta
         title={<ShotTitle {...shot}/>}
