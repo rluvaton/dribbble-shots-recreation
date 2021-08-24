@@ -11,7 +11,7 @@ interface PlayerProps {
 const Player: React.FC<PlayerProps> = ({ joystickFill, cableFill, background }) => {
   return (
     <div className={styles.player} style={{ background }}>
-      <JoystickIcon joystickFill={joystickFill} cableFill={cableFill}/>,
+      <JoystickIcon joystickFill={joystickFill} cableFill={cableFill}/>
     </div>
   );
 }
