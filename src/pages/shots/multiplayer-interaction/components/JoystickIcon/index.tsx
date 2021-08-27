@@ -1,25 +1,69 @@
-import React from "react";
-import styles from "./index.module.scss";
+import anime from 'animejs';
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './index.module.scss';
 
 export const _internalTesting = {
   testId: {
-    joystickPath: "joystick",
-    cablePath: "cable",
+    joystickPath: 'joystick',
+    cablePath: 'cable',
   },
 };
 
-const JoystickIcon: React.FC<{ joystickFill: string; cableFill: string }> = ({
-  joystickFill,
-  cableFill,
-}) => {
+interface JoystickIconProps {
+  joystickFill: string;
+  cableFill: string;
+  width?: number;
+  show: boolean;
+}
+
+const svgViewBoxWidth = 1636.78;
+
+const JoystickIcon: React.FC<JoystickIconProps> = ({ joystickFill, cableFill, width, show }) => {
+  const [viewBoxWidth, setViewBoxWidth] = useState(0);
+  const viewBoxWidthObj = useRef({ viewBoxWidth });
+
+
+  const [animationIn] = useState(anime({
+    targets: viewBoxWidthObj.current,
+    viewBoxWidth: svgViewBoxWidth,
+    direction: 'normal',
+    autoplay: false,
+    duration: 500,
+    easing: 'linear',
+    update: () => setViewBoxWidth(viewBoxWidthObj.current.viewBoxWidth),
+  }));
+  // const [animationOut] = useState(anime({
+  //   targets: viewBoxWidthObj.current,
+  //   viewBoxWidth: 0,
+  //   direction: 'normal',
+  //   autoplay: false,
+  //   duration: 500,
+  //   easing: 'linear',
+  //   update: () => setViewBoxWidth(viewBoxWidthObj.current.viewBoxWidth),
+  // }));
+
+
+  useEffect(() => {
+    if(show) {
+      animationIn.play();
+    } else {
+      animationIn.reverse();
+      animationIn.play();
+    }
+
+    return () => {
+      animationIn.pause();
+    };
+  }, [show]);
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       xmlSpace="preserve"
-      height="100%"
+      height="144px"
       width="100%"
-      viewBox="0 0 1636.78 2339.48"
+      viewBox={`0 0 ${viewBoxWidth} 2339.48`}
       className={styles.joystickIcon}
     >
       {/* Joystick */}

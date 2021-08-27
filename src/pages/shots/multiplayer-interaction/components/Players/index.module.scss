@@ -2,3 +2,34 @@
   display: flex;
   height: inherit;
 }
+//
+//.flexItem {
+//    transition: all 500ms linear;
+//}
+//
+//.newItem {
+//  /* 0 does not work so we have to use a small number */
+//  /* Start our small */
+//  flex: .00001;
+//
+//  animation: flexGrow 500ms ease forwards;
+//}
+//
+//.removeItem {
+//  flex: 1;
+//
+//  animation: flexShrink 500ms ease forwards;
+//}
+//
+//@keyframes flexGrow {
+//  to {
+//    flex: 1;
+//  }
+//}
+//
+//@keyframes flexShrink {
+//  to {
+//    flex: .01;
+//    flex: .00001;
+//  }
+//}

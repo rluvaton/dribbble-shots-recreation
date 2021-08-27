@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss';
 import { Shot } from '../../../common/interfaces/shot';
 import Players from './components/Players';
 
 const MultiPlayerInteraction: React.FC = () => {
-  const [numberOfPlayers, setNumberOfPlayers] = useState(4);
+  const [numberOfPlayers, setNumberOfPlayers] = useState(1);
 
   return (
     <div className={styles.card}>
