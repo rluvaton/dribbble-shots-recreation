@@ -1,4 +1,4 @@
-import { build, fake, sequence } from '@jackfranklin/test-data-bot';
+import { build, fake, perBuild, sequence } from '@jackfranklin/test-data-bot';
 import { Shot } from '../common/interfaces/shot';
 import React from 'react';
 
@@ -15,3 +15,11 @@ export const shotBuilder = build<Shot>('Shot', {
   },
 });
 
+
+// Can't use falsy values as an override value (there is a pending PR to allow that)
+// See https://github.com/jackfranklin/test-data-bot/issues/287
+export const overrideTestDataBotWithFalsyValue = (value: any) => {
+  // Using `perBuild` as a workaround as suggested here
+  // https://github.com/jackfranklin/test-data-bot/pull/288#issuecomment-653240712
+  return perBuild(() => value);
+};

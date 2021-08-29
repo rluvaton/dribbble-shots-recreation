@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.scss';
 import { Shot } from '../../../common/interfaces/shot';
 import Players from './components/Players';

@@ -1,68 +1,43 @@
-import anime from 'animejs';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 
 export const _internalTesting = {
   testId: {
+    svg: 'icon',
     joystickPath: 'joystick',
     cablePath: 'cable',
   },
 };
 
-interface JoystickIconProps {
+export interface JoystickIconProps {
   joystickFill: string;
   cableFill: string;
-  width?: number;
-  show: boolean;
+  animationProgress: number;
 }
 
 const svgViewBoxWidth = 1636.78;
+const svgViewBoxStep = svgViewBoxWidth / 100;
 
-const JoystickIcon: React.FC<JoystickIconProps> = ({ joystickFill, cableFill, width, show }) => {
+const JoystickIcon: React.FC<JoystickIconProps> = ({ joystickFill, cableFill, animationProgress }) => {
   const [viewBoxWidth, setViewBoxWidth] = useState(0);
-  const viewBoxWidthObj = useRef({ viewBoxWidth });
-
-
-  const [animationIn] = useState(anime({
-    targets: viewBoxWidthObj.current,
-    viewBoxWidth: svgViewBoxWidth,
-    direction: 'normal',
-    autoplay: false,
-    duration: 500,
-    easing: 'linear',
-    update: () => setViewBoxWidth(viewBoxWidthObj.current.viewBoxWidth),
-  }));
-  // const [animationOut] = useState(anime({
-  //   targets: viewBoxWidthObj.current,
-  //   viewBoxWidth: 0,
-  //   direction: 'normal',
-  //   autoplay: false,
-  //   duration: 500,
-  //   easing: 'linear',
-  //   update: () => setViewBoxWidth(viewBoxWidthObj.current.viewBoxWidth),
-  // }));
-
 
   useEffect(() => {
-    if(show) {
-      animationIn.play();
-    } else {
-      animationIn.reverse();
-      animationIn.play();
-    }
-
-    return () => {
-      animationIn.pause();
-    };
-  }, [show]);
+    setViewBoxWidth(svgViewBoxStep * animationProgress)
+  }, [animationProgress]);
 
   return (
     <svg
+      data-testid={_internalTesting.testId.svg}
+
       xmlns="http://www.w3.org/2000/svg"
-      version="1.1"
       xmlSpace="preserve"
-      height="144px"
+
+      // 100% so it will be responsive
+      height="100%"
       width="100%"
+
+      // we animate only the viewBox width to create the effect that the joystick
+      // is moving from left to right and at the start the joystick is cropped until fully shown
       viewBox={`0 0 ${viewBoxWidth} 2339.48`}
       className={styles.joystickIcon}
     >
