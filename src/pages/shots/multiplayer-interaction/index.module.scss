@@ -1,4 +1,64 @@
-.card {
-  width: 529px;
-  height: 204px;
+.page {
+  display: flex;
+  height: 100%;
+
+  background-color: #f4f4f4;
+
+  > .card {
+    width: 62%;
+
+    max-width: 394px;
+    max-height: 297px;
+
+    /* Supported by latest versions of major browsers */
+    aspect-ratio: 37/23;
+
+    margin: auto;
+
+    border-radius: 12px;
+    /* This is so the descendants of the card wouldn't ruin the border-radius */
+    overflow: hidden;
+
+    box-shadow: rgba(0, 0, 0, 0.10) 0 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+
+    // DEV
+    //border: 1px red solid;
+    //z-index: 1;
+    //margin-top: 73px;
+  }
+
+  // DEV
+  .debugBox {
+    width: 22px;
+    height: 50px;
+
+    position: absolute;
+    top: 188px;
+    left: 754px;
+
+    z-index: 2;
+
+    //background-color: red;
+    border: 1px black solid;
+
+    transform: translateX(0px);
+
+    transition-timing-function: cubic-bezier(0.83, 0, 0.4, 0.99);
+    transition-duration: 0.450s;
+
+    &.move {
+      transform: translateX(-203px);
+    }
+  }
+
+  .expectedVideo {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+    //opacity: 41%;
+  }
 }
+

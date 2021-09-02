@@ -26,8 +26,8 @@ const Player: React.FC<PlayerProps> = ({ show, joystickFill, cableFill, backgrou
     value: [0, 100],
     direction: 'normal',
     autoplay: false,
-    duration: 500,
-    easing: 'linear',
+    duration: 450,
+    easing: 'cubicBezier(0.83, 0, 0.4, 0.99)',
     update: () => setAnimationProgress(animationProgressObj.current.value),
   }));
 
@@ -49,7 +49,10 @@ const Player: React.FC<PlayerProps> = ({ show, joystickFill, cableFill, backgrou
     className={styles.player}
     style={{ backgroundColor, flex: `${animationProgress}%` }}
   >
-    <JoystickIcon animationProgress={animationProgress} joystickFill={joystickFill} cableFill={cableFill}/>
+    <JoystickIcon animationProgress={animationProgress}
+                  joystickFill={joystickFill}
+                  cableFill={cableFill}
+                  backgroundColor={backgroundColor}/>
   </div>;
 };
 

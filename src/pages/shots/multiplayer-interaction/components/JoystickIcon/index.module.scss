@@ -3,4 +3,11 @@ svg.joystickIcon {
   clip-rule: evenodd;
   stroke-linecap: round;
   stroke-linejoin: round;
+
+  .shadow {
+    //-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+
+    fill: transparent; // rgba(0, 0, 0, 0.3);
+  }
 }
