@@ -4,26 +4,35 @@
 
   background-color: #f4f4f4;
 
-  > .card {
+}
 
-    // We specify width and height explicitly because otherwise the SVG icon will take over the whole card
-    width: 330px;
-    height: 208px;
+.card {
 
+  max-width: 330px;
+  max-height: 208px;
 
-    /* Supported by latest versions of major browsers */
-    aspect-ratio: 330/208;
+  // From https://stackoverflow.com/a/69008956/5923666
+  @media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      /* Safari Only CSS here */
 
-    margin: auto;
-
-    border-radius: 12px;
-    /* This is so the descendants of the card wouldn't ruin the border-radius */
-    overflow: hidden;
-
-    box-shadow: rgba(0, 0, 0, 0.10) 0 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-
-    display: flex;
-    flex-direction: column;
+      // We specify height explicitly because otherwise the SVG icon will take over the whole card
+      height: 208px;
+    }
   }
+
+  /* Supported by latest versions of major browsers */
+  aspect-ratio: 330/208;
+
+  margin: auto;
+
+  border-radius: 12px;
+  /* This is so the descendants of the card wouldn't ruin the border-radius */
+  overflow: hidden;
+
+  box-shadow: rgba(0, 0, 0, 0.10) 0 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+
+  display: flex;
+  flex-direction: column;
 }
 
