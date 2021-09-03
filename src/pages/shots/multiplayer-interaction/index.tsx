@@ -4,6 +4,7 @@ import { Shot } from '../../../common/interfaces/shot';
 import Players from './components/Players';
 import anime, { AnimeInstance } from 'animejs';
 import usePrevious from '../../../common/hooks/usePrevious';
+import Content from './components/Content';
 
 const MultiPlayerInteraction: React.FC = () => {
   const [numberOfPlayers, setNumberOfPlayers] = useState(1);
@@ -27,7 +28,7 @@ const MultiPlayerInteraction: React.FC = () => {
 
   useEffect(() => {
     // Don't animate if click animation hasn't set yet / this previous number of player is undefined - meaning it's the first render
-    if(!clickAnimation.current || prevNumberOfPlayers === undefined) {
+    if (!clickAnimation.current || prevNumberOfPlayers === undefined) {
       return;
     }
 
@@ -38,8 +39,7 @@ const MultiPlayerInteraction: React.FC = () => {
     <div className={styles.page}>
       <div className={styles.card} ref={cardRef}>
         <Players numberOfPlayers={numberOfPlayers}/>
-        <button disabled={numberOfPlayers <= 1} onClick={() => setNumberOfPlayers(prev => prev - 1)}>-</button>
-        <button disabled={numberOfPlayers >= 4} onClick={() => setNumberOfPlayers(prev => prev + 1)}>+</button>
+        <Content numberOfPlayers={numberOfPlayers} setNumberOfPlayers={setNumberOfPlayers}/>
       </div>
     </div>
   );

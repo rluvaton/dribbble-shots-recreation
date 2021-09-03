@@ -5,4 +5,7 @@ svg.joystickIcon {
   stroke-linejoin: round;
 
   filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.1));
+
+  // This is required so in Safari the SVG would stay in his boundaries
+  display: block;
 }

@@ -1,0 +1,96 @@
+@mixin text {
+  font: {
+    weight: 600;
+    size: 1.5em;
+  }
+}
+
+.content {
+  display: flex;
+
+  margin: {
+    top: auto;
+    bottom: auto;
+  }
+
+  > .title {
+    @include text;
+
+    height: fit-content;
+
+    margin: {
+      bottom: auto;
+      top: auto;
+      right: auto;
+
+      left: 15px;
+    };
+
+  }
+
+  > .actions {
+    display: flex;
+    width: 31%;
+
+    > .numberOfPlayers {
+      @include text;
+    }
+
+    > .minusIcon {
+      margin-right: auto;
+    }
+
+    > .minusIcon,
+    > .plusIcon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #E3E3E3;
+
+
+      margin: {
+        top: auto;
+        bottom: auto;
+      }
+
+      // The horizontal line at the middle
+      &:before {
+        content: '';
+        width: 14px;
+
+        border: {
+          bottom: solid 2px #747474;
+          radius: 10px;
+        }
+
+        position: absolute;
+        z-index: 0;
+
+        transform: translateY(14px) translateX(8px);
+      }
+    }
+
+    > .plusIcon {
+      margin: {
+        left: auto;
+        right: 10px;
+      };
+
+      &:after {
+        content: '';
+        height: 14px;
+
+        border: {
+          left: solid 2px #747474;
+          radius: 10px;
+        }
+
+        position: absolute;
+        z-index: 0;
+
+        transform: translateY(8px) translateX(14px);
+      }
+    }
+  }
+
+}
