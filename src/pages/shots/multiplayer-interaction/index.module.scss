@@ -6,14 +6,13 @@
 
   > .card {
 
-    max-width: 330px;
-    //width: 330px;
-    max-height: 208px;
-    //height: 208px;
+    // We specify width and height explicitly because otherwise the SVG icon will take over the whole card
+    width: 330px;
+    height: 208px;
 
 
     /* Supported by latest versions of major browsers */
-    aspect-ratio: 303/208;
+    aspect-ratio: 330/208;
 
     margin: auto;
 
