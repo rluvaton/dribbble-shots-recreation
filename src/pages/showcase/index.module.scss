@@ -21,10 +21,12 @@
       // so this is a workaround from [here](https://github.com/sass/node-sass/issues/2815#issuecomment-574038619)
       //
       // We're using 24% because if we use 25% it will create 3 columns in each row (at max) instead of 4
-      grid-template-columns: repeat(auto-fill, minmax(#{"max(150px, 24%)"}, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(#{"max(300px, 24%)"}, 1fr));
 
       // TODO (rluvaton): make the rows fill the screen
       gap: 10px;
+
+      height: 250px;
     }
 
   }

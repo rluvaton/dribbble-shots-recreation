@@ -11,5 +11,5 @@ export interface Shot {
   // The Dribbble Shot
   originalShotLink?: string;
 
-  createComponent: () => ReactNode;
+  createComponent: (preview?: boolean) => ReactNode;
 }

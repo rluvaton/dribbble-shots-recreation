@@ -6,7 +6,13 @@ import anime, { AnimeInstance } from 'animejs';
 import usePrevious from '../../../common/hooks/usePrevious';
 import Content from './components/Content';
 
-const MultiPlayerInteraction: React.FC = () => {
+// We use 0.5 when in preview so the background will be should too
+const calcRegularScale = (preview: boolean) => preview ? 0.5 : 1;
+
+const MultiPlayerInteraction: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
+  // When we are on preview we show the entire card while not breaking the card look
+  const [regularScale, setRegularScale] = useState(calcRegularScale(preview));
+
   const [numberOfPlayers, setNumberOfPlayers] = useState(1);
   const prevNumberOfPlayers = usePrevious(numberOfPlayers);
 
@@ -14,17 +20,23 @@ const MultiPlayerInteraction: React.FC = () => {
   const clickAnimation = useRef<AnimeInstance>();
 
   useEffect(() => {
+    if (!cardRef.current) {
+      return;
+    }
+
     clickAnimation.current = anime({
       targets: cardRef.current,
       autoplay: false,
-      scale: [1, 0.97],
+      scale: [regularScale, regularScale - 0.03],
       direction: 'alternate',
       duration: 200,
       easing: 'linear',
     });
+  }, [regularScale]);
 
-    // We do useEffect on `useRef` result in order to know when the reference has been made
-  }, [cardRef]);
+  useEffect(() => {
+    setRegularScale(calcRegularScale(preview));
+  }, [preview]);
 
   useEffect(() => {
     // Don't animate if click animation hasn't set yet / this previous number of player is undefined - meaning it's the first render
@@ -39,7 +51,7 @@ const MultiPlayerInteraction: React.FC = () => {
     <div className={styles.page}>
       <div className={styles.card} ref={cardRef}>
         <Players numberOfPlayers={numberOfPlayers}/>
-        <Content numberOfPlayers={numberOfPlayers} setNumberOfPlayers={setNumberOfPlayers}/>
+        <Content preview={preview} numberOfPlayers={numberOfPlayers} setNumberOfPlayers={setNumberOfPlayers}/>
       </div>
     </div>
   );
@@ -51,7 +63,7 @@ export const shot: Shot = {
   name: 'Multi-player interaction',
   description: '',
   link: '/multi-player-interaction',
-  createComponent: () => <MultiPlayerInteraction/>,
+  createComponent: (preview) => <MultiPlayerInteraction preview={preview}/>,
   originalShotLink: 'https://dribbble.com/shots/11568643-Multi-player-interaction',
 }
 
