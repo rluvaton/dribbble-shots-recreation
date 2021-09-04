@@ -44,16 +44,18 @@ const Player: React.FC<PlayerProps> = ({ show, joystickFill, cableFill, backgrou
     toggle(animation.current, (value) => animationProgressObj.current.value = value);
   }, [animate, show]);
 
-  return <div
-    data-testid="player"
-    className={styles.player}
-    style={{ backgroundColor, flex: `${animationProgress}%` }}
-  >
-    <JoystickIcon animationProgress={animationProgress}
-                  joystickFill={joystickFill}
-                  cableFill={cableFill}
-                  backgroundColor={backgroundColor}/>
-  </div>;
+  return (
+    <div
+      data-testid="player"
+      className={styles.player}
+      style={{ backgroundColor, flex: `${animationProgress}%` }}
+    >
+      <JoystickIcon animationProgress={animationProgress}
+                    joystickFill={joystickFill}
+                    cableFill={cableFill}
+                    backgroundColor={backgroundColor}/>
+    </div>
+  );
 };
 
 export default Player;
