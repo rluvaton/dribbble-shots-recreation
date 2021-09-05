@@ -22,6 +22,7 @@ export const joystickIconPropsBuilder = build<JoystickIconProps>('JoystickIconPr
     }),
     joystickFill: fake(f => f.internet.color()),
     cableFill: fake(f => f.internet.color()),
+    backgroundColor: fake(f => f.internet.color()),
   },
 });
 

@@ -6,6 +6,7 @@ export const _internalTesting = {
     svg: 'icon',
     joystickPath: 'joystick',
     cablePath: 'cable',
+    buttonsGroup: 'buttons',
   },
 };
 
@@ -54,10 +55,10 @@ const JoystickIcon: React.FC<JoystickIconProps> = ({ joystickFill, cableFill, ba
         />
 
         {/*
-          We added shapes above the SVG instead of subtract the shapes from the controller (when we created the icon)
-          because it makes very hard to add the controller shadow
-        */}
-        <g style={{ fill: backgroundColor }}>
+         We added shapes above the SVG instead of subtract the shapes from the controller (when we created the icon)
+         because it makes very hard to add the controller shadow
+         */}
+        <g data-testid={_internalTesting.testId.buttonsGroup} style={{ fill: backgroundColor }}>
 
           {/* Right top circle */}
           <path

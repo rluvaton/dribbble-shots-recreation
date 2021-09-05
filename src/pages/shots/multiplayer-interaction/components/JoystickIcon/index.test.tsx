@@ -14,7 +14,6 @@ describe('JoystickIcon', () => {
     const svgViewBox = svg.getAttribute('viewBox');
     expect(typeof svgViewBox).toEqual('string');
 
-
     const svgViewBoxParts = svgViewBox!
       // According to MDN The numbers separated by whitespace and/or a comma so we convert it to spaces only
       // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox
@@ -31,7 +30,7 @@ describe('JoystickIcon', () => {
     return parseInt(svgViewBoxWidth, 10);
   }
 
-  it('should render the component with the passing joystickFill and cableFill colors', () => {
+  it('should render the component with the passing joystickFill, cableFill and background colors', () => {
     // Arrange
     const props = joystickIconPropsBuilder();
 
@@ -41,9 +40,11 @@ describe('JoystickIcon', () => {
     // Assert
     const joystickPath = screen.getByTestId(_internalTesting.testId.joystickPath);
     const cablePath = screen.getByTestId(_internalTesting.testId.cablePath);
+    const buttonsGroup = screen.getByTestId(_internalTesting.testId.buttonsGroup);
 
     expect(joystickPath).toHaveStyle({ fill: props.joystickFill });
     expect(cablePath).toHaveStyle({ fill: props.cableFill });
+    expect(buttonsGroup).toHaveStyle({ fill: props.backgroundColor });
   });
 
   it('should set the svg viewBox width to be 0 when passing animationProgress=0', () => {

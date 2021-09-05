@@ -13,6 +13,7 @@ const Players: React.FC<{ numberOfPlayers: number }> = ({ numberOfPlayers }) => 
   return <div className={styles.playerContainer}>
     {playersColorsFill.map(({ joystick, cable, background }, index) => {
       return <Player
+        data-testid="player"
         key={index}
 
         // Shouldn't animate the first item as it always open
