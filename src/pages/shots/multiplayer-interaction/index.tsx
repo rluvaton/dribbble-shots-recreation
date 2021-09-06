@@ -45,11 +45,17 @@ const MultiPlayerInteraction: React.FC<{ preview?: boolean }> = ({ preview = fal
     }
 
     clickAnimation.current.play();
-  }, [numberOfPlayers, prevNumberOfPlayers]);
+
+    // Most of the time you shouldn't put this ignore,
+    // but eslint complain about not adding `prevNumberOfPlayers` to the deps list, although `prevNumberOfPlayers` is just the `.current` of `useRef` result
+    //
+    // So we need to be aware when changing the implementation to add / remove deps (and if not using usePrevious result it's better remove these comments)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [numberOfPlayers]);
 
   return (
     <div className={styles.page}>
-      <div className={styles.card} ref={cardRef}>
+      <div data-testid="card" className={styles.card} ref={cardRef}>
         <Players numberOfPlayers={numberOfPlayers}/>
         <Content preview={preview} numberOfPlayers={numberOfPlayers} setNumberOfPlayers={setNumberOfPlayers}/>
       </div>
