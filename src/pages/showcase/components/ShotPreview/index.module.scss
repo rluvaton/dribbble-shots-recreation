@@ -1,1 +1,19 @@
+.card {
 
+  //max-width: 300px;
+  //margin-left: auto;
+  //margin-right: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  // Don't generate unique name for the 'ant-card-cover' class as we want to override it
+  // https://github.com/css-modules/css-modules/issues/79#issuecomment-200297626
+  :global {
+    .ant-card-cover {
+      // We want the card cover to fill the entire card but still have space for the body
+      // Not using height here because it will make the body be outside of the card
+      flex: 1;
+    }
+  }
+}

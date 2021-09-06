@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 
 export interface Shot {
   id: string;
@@ -11,5 +11,5 @@ export interface Shot {
   // The Dribbble Shot
   originalShotLink?: string;
 
-  createComponent: () => ReactNode;
+  createComponent: (preview?: boolean) => ReactElement;
 }
