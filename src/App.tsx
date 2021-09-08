@@ -3,18 +3,23 @@ import './App.css';
 import ShowcasePage from './pages/showcase';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { allShots } from './pages/shots';
+import PageRoute from './common/components/PageRoute';
 
 function App() {
-  const routes = allShots.map(({ id, link, createComponent }) => ({ id, link, createComponent }))
+  const routes = allShots.map(({ id, link, createComponent, name }) => ({ id, link, createComponent, name }))
+
   return (
     <Router>
       <Switch>
 
-        <Route exact path="/">
+        <PageRoute exact path="/" title="Dribbble Shots Recreation">
           <ShowcasePage/>
-        </Route>
+        </PageRoute>
 
-        {routes.map(({ id, link, createComponent }) => <Route key={id} exact path={link}>{createComponent()}</Route>)}
+        {
+          routes.map(({ id, link, createComponent, name }) =>
+            <PageRoute key={id} exact path={link} title={name}>{createComponent()}</PageRoute>)
+        }
 
         <Route path="*">
           {/* Redirect to showcase */}
