@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 import { Shot } from '../../../common/interfaces/shot';
 import Players from './components/Players';
 import anime, { AnimeInstance } from 'animejs';
-import usePrevious from '../../../common/hooks/usePrevious';
+import usePrevious from '../../../common/hooks/usePrevious/';
 import Content from './components/Content';
 
 // We use 0.5 when in preview so the background will be should too

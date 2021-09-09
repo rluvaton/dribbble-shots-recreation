@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import usePrevious from './usePrevious';
+import usePrevious from './';
 import { render, screen } from '@testing-library/react';
 
 describe('usePrevious', () => {
