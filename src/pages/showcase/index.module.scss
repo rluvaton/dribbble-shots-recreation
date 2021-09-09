@@ -1,9 +1,52 @@
 .layout {
   height: 100%;
 
-  .title {
-    text-align: center;
-    color: white !important;
+  .header {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    padding: 0 20px;
+
+    .title {
+
+      // We need the width as a variable because we use it in the margin-left calculations.
+      $width: 180px;
+      width: $width;
+
+
+      margin: {
+        top: 0;
+        bottom: 0;
+        right: auto;
+
+        // position it in the middle.
+        left: calc(50% - #{$width} / 2);
+      };
+
+      transition: margin-left 0.5s;
+
+      /* For Mobile */
+      @media screen and (max-width: 540px) {
+        & {
+          // Make the title be at the right
+          margin-left: 0;
+        }
+      }
+
+      padding-bottom: 4px;
+      flex: 0;
+
+      color: white !important;
+    }
+
+    .githubButton {
+      font-size: 2.5em;
+
+      .githubIcon {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
   }
 
   .content {

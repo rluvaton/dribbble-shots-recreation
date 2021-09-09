@@ -40,9 +40,7 @@ describe('ShowcasePage', () => {
     render(<ShowcasePage/>);
 
     // Assert
-    const shotTitleElement = screen.queryByText('Showcase');
-
-    expect(shotTitleElement).toBeInTheDocument();
+    screen.getByText('Showcase');
   });
 
   it('should render the page and display the shot components', () => {
@@ -67,6 +65,21 @@ describe('ShowcasePage', () => {
     // Assert
     screen.getByText('Showcase');
     shots.forEach(shot => screen.getByTestId(getShotComponentTestId(shot)));
+  });
+
+  it('should have the Github icon', () => {
+    // Arrange
+    const shots: Shot[] = [];
+
+
+    const ShowcasePage = mockShotsAndGetComponent(shots);
+
+    // Act
+    render(<ShowcasePage/>);
+
+    // Assert
+    // The GitHub Icon have the `aria-label=github` in it
+    screen.getByLabelText('github');
   });
 
 });

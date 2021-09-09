@@ -1,0 +1,11 @@
+.githubButton {
+  font-size: 1em;
+
+  // Without it, changing the font size have problems.
+  width: fit-content;
+  height: fit-content;
+
+  .githubIcon {
+    font-size: inherit;
+  }
+}
