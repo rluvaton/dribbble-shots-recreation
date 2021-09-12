@@ -1,61 +1,51 @@
 import useSingleCookie from '../../hooks/useSingleCookie';
-import useScript, { ScriptLoadedState } from '../../hooks/useScript';
+import useScript, { ScriptLoadingState } from '../../hooks/useScript';
 import React, { useEffect } from 'react';
 
-// @ts-ignore There is no types for this library ¯\_(ツ)_/¯
+import * as CookiesLoader from './cookies-loader';
+
+// @ts-ignore There is no types for this library ¯\_(ツ)_/¯ (https://github.com/xavierbriole/react-cookienotice/issues/71)
 import CookieNotice from 'react-cookienotice'
 
-const googleAnalyticsScriptUrl = 'https://www.googletagmanager.com/gtag/js?id=G-QJKNRLFEXM';
-
 const CookieInjector = () => {
-  const allowCookies = useSingleCookie<boolean>({
+  const allowCookies = useSingleCookie({
     cookieName: 'allow-cookies',
     parser: value => value === 'true',
   });
 
   const {
-    scriptLoadedState: googleAnalyticsScriptLoadedState,
+    scriptLoadingState: googleAnalyticsScriptLoadedState,
     setShouldLoad: setShouldLoadCookies,
-  } = useScript(googleAnalyticsScriptUrl)
+  } = useScript(CookiesLoader.scriptUrl);
 
   useEffect(() => {
     if (!allowCookies) {
       setShouldLoadCookies(false);
+      CookiesLoader.unload();
       return;
     }
 
     switch (googleAnalyticsScriptLoadedState) {
-      case ScriptLoadedState.LOADED:
+      case ScriptLoadingState.LOADED:
         // Continue loading the script
         break;
 
-      case ScriptLoadedState.UNLOADED:
+      case ScriptLoadingState.UNLOADED:
         setShouldLoadCookies(true);
         return;
 
-      case ScriptLoadedState.LOADING:
-      case ScriptLoadedState.FAILED:
+      case ScriptLoadingState.LOADING:
+      case ScriptLoadingState.FAILED:
       default:
         return;
     }
 
-
-    // Global site tag (gtag.js) - Google Analytics
-    // Sorry 😬 but I need to know how my website is doing
-
-    // @ts-ignore
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag(...args: any[]) {
-      // @ts-ignore
-      window.dataLayer.push(args);
-    }
-
-    gtag('js', new Date());
-    gtag('config', 'G-QJKNRLFEXM');
+    CookiesLoader.load();
   }, [setShouldLoadCookies, allowCookies, googleAnalyticsScriptLoadedState]);
 
-  // Add the notice everywhere
+  // We're not using the `onAcceptButtonClick` function because it's good only for the first time.
+  // We need to check if the `allow-cookies` exist after the user pressed accept and reloaded the page (for example)
+  // And the function only called when clicking accept...
   return <CookieNotice/>
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export enum ScriptLoadedState {
+export enum ScriptLoadingState {
   UNLOADED = 'unloaded',
   LOADING = 'loading',
   LOADED = 'loaded',
@@ -9,27 +9,27 @@ export enum ScriptLoadedState {
 
 // Based on https://stackoverflow.com/a/34425083/5923666
 const useScript = (url: string, shouldLoadImmediately: boolean = false): {
-  scriptLoadedState: ScriptLoadedState,
+  scriptLoadingState: ScriptLoadingState,
   setShouldLoad: React.Dispatch<React.SetStateAction<boolean>>,
 } => {
   const [shouldLoad, setShouldLoad] = useState(shouldLoadImmediately);
-  const [scriptLoadedState, setScriptLoadedState] = useState<ScriptLoadedState>(ScriptLoadedState.UNLOADED);
+  const [scriptLoadingState, setScriptLoadingState] = useState<ScriptLoadingState>(ScriptLoadingState.UNLOADED);
 
   useEffect(() => {
     if (!shouldLoad) {
-      setScriptLoadedState(ScriptLoadedState.UNLOADED);
+      setScriptLoadingState(ScriptLoadingState.UNLOADED);
       return;
     }
 
-    setScriptLoadedState(ScriptLoadedState.LOADING);
+    setScriptLoadingState(ScriptLoadingState.LOADING);
 
     const script = document.createElement('script');
 
     script.src = url;
     script.async = true;
 
-    script.onerror = () => setScriptLoadedState(ScriptLoadedState.FAILED);
-    script.onload = () => setScriptLoadedState(ScriptLoadedState.LOADED)
+    script.onerror = () => setScriptLoadingState(ScriptLoadingState.FAILED);
+    script.onload = () => setScriptLoadingState(ScriptLoadingState.LOADED)
 
     document.body.appendChild(script);
 
@@ -38,7 +38,7 @@ const useScript = (url: string, shouldLoadImmediately: boolean = false): {
     }
   }, [shouldLoad, url]);
 
-  return { scriptLoadedState, setShouldLoad };
+  return { scriptLoadingState, setShouldLoad };
 };
 
 export default useScript;

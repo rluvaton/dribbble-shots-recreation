@@ -7,7 +7,7 @@ import PageRoute from './common/components/PageRoute';
 import CookieInjector from './common/components/CookieInjector';
 
 function App() {
-   const routes = allShots.map(({ id, link, createComponent, name }) => ({ id, link, createComponent, name }))
+  const routes = allShots.map(({ id, link, createComponent, name }) => ({ id, link, createComponent, name }))
 
   return (
     <Router>
@@ -30,7 +30,7 @@ function App() {
         </Switch>
 
         {/* Load the component in every route */}
-        <CookieInjector />
+        <CookieInjector/>
       </>
 
     </Router>
