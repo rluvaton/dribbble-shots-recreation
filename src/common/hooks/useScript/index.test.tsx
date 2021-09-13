@@ -120,4 +120,6 @@ describe('useScript', () => {
       await screen.findByText(ScriptLoadingState.LOADED)
     });
   });
+
+  it.todo('should remove the previous script tag when the url changed');
 });

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 
 interface UseSingleCookieOptions<T> {
