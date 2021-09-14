@@ -54,7 +54,8 @@
     "@types/faker": "^5.5.8",
     "@types/js-cookie": "^2.2.7",
     "@types/react-router-dom": "^5.1.8",
-    "faker": "^5.5.3"
+    "faker": "^5.5.3",
+    "jest-extended": "^0.11.5"
   },
   "jest": {
     "restoreMocks": true,

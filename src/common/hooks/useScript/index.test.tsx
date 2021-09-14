@@ -121,5 +121,45 @@ describe('useScript', () => {
     });
   });
 
+  describe(`should remove script tag when the component unmount`, () => {
+    it('when shouldLoadImmediately = true', async () => {
+      // Arrange
+      const { baseElement, unmount } = render(<Example shouldLoadImmediately={true}/>);
+      const scriptTagBefore = baseElement.querySelector('script');
+
+      // Act
+      unmount();
+
+      // Assert
+      // Not checking with `toBeInTheDocument` as we called `unmount` already
+      expect(scriptTagBefore).toBeDefined();
+
+      const scriptTagAfter = baseElement.querySelector('script');
+      expect(scriptTagAfter).not.toBeInTheDocument();
+    });
+
+    it('when shouldLoadImmediately = false and clicking the load button', async () => {
+      // Arrange
+      const { baseElement, unmount } = render(<Example shouldLoadImmediately={false}/>);
+
+      const loadButton = screen.getByText('Load');
+
+      // Must wrap in `act` so the click will actually create the script tag
+      act(() => userEvent.click(loadButton));
+
+      const scriptTagBefore = baseElement.querySelector('script');
+
+      // Act
+      unmount();
+
+      // Assert
+      // Not checking with `toBeInTheDocument` as we called `unmount` already
+      expect(scriptTagBefore).toBeDefined();
+
+      const scriptTagAfter = baseElement.querySelector('script');
+      expect(scriptTagAfter).not.toBeInTheDocument();
+    });
+  });
+
   it.todo('should remove the previous script tag when the url changed');
 });
