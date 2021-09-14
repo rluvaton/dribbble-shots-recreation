@@ -57,6 +57,7 @@
     "faker": "^5.5.3"
   },
   "jest": {
+    "restoreMocks": true,
     "transformIgnorePatterns": [
       "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
     ]
