@@ -1,0 +1,5 @@
+/* Not using CSS modules because we want it to effect without needing to assign to specific component */
+.react-cookienotice-root.cookies-allowed {
+  /* Fix #25 */
+  display: none !important;
+}

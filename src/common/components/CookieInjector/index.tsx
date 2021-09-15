@@ -3,6 +3,8 @@ import useScript, { ScriptLoadingState } from '../../hooks/useScript';
 import React, { useEffect } from 'react';
 import * as CookiesLoader from './cookies-loader';
 
+import './index.css';
+
 // @ts-ignore There is no types for this library ¯\_(ツ)_/¯ (https://github.com/xavierbriole/react-cookienotice/issues/71)
 import CookieNotice from 'react-cookienotice'
 
