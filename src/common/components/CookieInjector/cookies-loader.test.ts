@@ -25,7 +25,27 @@ describe('Cookies Loader', () => {
     CookiesLoader = getCookiesLoader();
   });
 
+  describe('gtag', () => {
+    it('window.gtag should be defined and a function', () => {
+      expect(window.gtag).toBeFunction();
+    })
+  })
+
   describe('load', () => {
+
+    function assertWindowDataLayerContent() {
+      // Not using `.toEqual` on the array because the array contains the `arguments` object that some options can't be accessed
+      // Opened a question on StackOverflow here - https://stackoverflow.com/q/69185702/5923666
+      expect(window.dataLayer).toHaveLength(2);
+
+      expect(window.dataLayer[0]).toHaveLength(2);
+      expect(window.dataLayer[0][0]).toEqual('js');
+      expect(window.dataLayer[0][1]).toEqual(expect.any(Date));
+
+      expect(window.dataLayer[1]).toHaveLength(2);
+      expect(window.dataLayer[1][0]).toEqual('config');
+      expect(window.dataLayer[1][1]).toEqual(expect.stringMatching(/^G-[A-Za-z]+$/));
+    }
 
     it('should be defined', () => {
       // Arrange
@@ -45,10 +65,7 @@ describe('Cookies Loader', () => {
       load();
 
       // Assert
-      expect(window.dataLayer).toEqual([
-        ['js', expect.any(Date)],
-        ['config', expect.stringMatching(/^G-[A-Za-z]+$/)],
-      ]);
+      assertWindowDataLayerContent();
 
       expect(spiedConsoleLog).toBeCalledTimes(1);
       expect(spiedConsoleLog).toBeCalledWith(expect.stringMatching(/^Loading/));
@@ -68,15 +85,13 @@ describe('Cookies Loader', () => {
       load();
 
       // Assert
-      expect(window.dataLayer).toEqual([
-        ['js', expect.any(Date)],
-        ['config', expect.stringMatching(/^G-[A-Za-z]+$/)],
-      ]);
+      assertWindowDataLayerContent();
 
       expect(spiedConsoleLog).toBeCalledTimes(1);
       expect(spiedConsoleLog).toBeCalledWith(expect.stringMatching(/^Loading/));
     });
 
+    it.todo('test window.dataLayer contains ann `arguments` objects');
   });
 
   describe('unload', () => {
@@ -100,7 +115,7 @@ describe('Cookies Loader', () => {
       unload();
 
       // Assert
-      expect(window.dataLayer).toEqual(undefined);
+      expect(window.dataLayer).toEqual([]);
 
       expect(spiedConsoleLog).toBeCalledTimes(0);
     });
