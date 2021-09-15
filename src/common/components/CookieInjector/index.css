@@ -1,5 +1,35 @@
 /* Not using CSS modules because we want it to effect without needing to assign to specific component */
-.react-cookienotice-root.cookies-allowed {
-  /* Fix #25 */
-  display: none !important;
+
+/* Fix #25 */
+
+/* If on first time page is loaded the cookies are allowed, shouldn't make animation for hiding them */
+.on-start-cookies-allowed .react-cookienotice-root.cookies-allowed {
+  /* Make the notice to take no space */
+  display: none;
+
+  /* Disable the transition */
+  transition: unset !important;
+}
+
+.on-start-cookies-not-allowed .react-cookienotice-root.cookies-allowed {
+  /*
+    Using `forwards` as we want to retain the style values from the last keyframe when the animation ends
+    (opacity 0 and display none)
+  */
+  animation: hide 0.5s forwards;
+
+  /* Disable the transition */
+  transition: unset !important;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+
+    /* Make the notice to take no space */
+    display: none;
+  }
 }
