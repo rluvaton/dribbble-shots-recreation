@@ -2,6 +2,8 @@ declare global {
   interface Window {
     // Google Tags Manager
     dataLayer: any[];
+
+    gtag: (...args: any) => void;
   }
 }
 
@@ -9,11 +11,19 @@ declare global {
 const GOOGLE_TAGS_ID = 'G-QJKNRLFEXM';
 const GOOGLE_ANALYTICS_SCRIPT_URL = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAGS_ID}`;
 
-// Google Tag Manager (Google Analytics) required function
-function gtag(...args: any[]) {
-  window.dataLayer.push(args);
+// ----------- START: Google Tag Manager (Google Analytics) required code -----------
+
+// The function is usually done in the script tag within the global scope, so we adding the function to the global scope
+window.gtag = function gtag() {
+  // Use `arguments` instead of the rest parameter
+  // See why here - https://stackoverflow.com/a/69185535/5923666
+  // TL;DR: arguments contain some data that not passed in the rest parameters
+  window.dataLayer.push(arguments);
 }
 
+window.dataLayer = window.dataLayer || [];
+
+// ----------- END: Google Tag Manager (Google Analytics) required code -----------
 
 // In case of adding more providers we need to modify the `CookieInjector` to load the other scripts too
 const cookies: {
@@ -30,10 +40,8 @@ const cookies: {
   googleTagManager: {
     loaded: false,
     load: () => {
-      window.dataLayer = window.dataLayer || [];
-
-      gtag('js', new Date());
-      gtag('config', 'G-QJKNRLFEXM');
+      window.gtag('js', new Date());
+      window.gtag('config', GOOGLE_TAGS_ID);
     },
     unload: () => {
       // This is the best thing I can think of for removing traces of Google Tags Manager
