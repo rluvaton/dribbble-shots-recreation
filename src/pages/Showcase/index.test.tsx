@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import type ShowcasePageType from './';
+import type ShowcaseType from './';
 import { Shot } from '../../common/interfaces/shot';
 import * as faker from 'faker';
 import { shotBuilder } from '../../test-helpers/entities-builders';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-describe('ShowcasePage', () => {
+describe('Showcase', () => {
 
-  function mockShotsAndGetComponent(mockAllShots: Shot[]): typeof ShowcasePageType {
+  function mockShotsAndGetComponent(mockAllShots: Shot[]): typeof ShowcaseType {
     jest.mock('../shots', () => ({ allShots: mockAllShots }));
 
     // the shots
@@ -34,10 +34,10 @@ describe('ShowcasePage', () => {
     const shots: Shot[] = [];
 
 
-    const ShowcasePage = mockShotsAndGetComponent(shots);
+    const Showcase = mockShotsAndGetComponent(shots);
 
     // Act
-    render(<ShowcasePage/>);
+    render(<Showcase/>);
 
     // Assert
     screen.getByText('Showcase');
@@ -57,10 +57,10 @@ describe('ShowcasePage', () => {
       }),
     );
 
-    const ShowcasePage = mockShotsAndGetComponent(shots);
+    const Showcase = mockShotsAndGetComponent(shots);
 
     // Act
-    render(<ShowcasePage/>, {wrapper: Router});
+    render(<Showcase/>, {wrapper: Router});
 
     // Assert
     screen.getByText('Showcase');
@@ -72,10 +72,10 @@ describe('ShowcasePage', () => {
     const shots: Shot[] = [];
 
 
-    const ShowcasePage = mockShotsAndGetComponent(shots);
+    const Showcase = mockShotsAndGetComponent(shots);
 
     // Act
-    render(<ShowcasePage/>);
+    render(<Showcase/>);
 
     // Assert
     // The GitHub Icon have the `aria-label=github` in it

@@ -27,7 +27,7 @@ export const joystickIconPropsBuilder = build<JoystickIconProps>('JoystickIconPr
 });
 
 
-describe('multiplayer-interaction test helper', () => {
+describe('MultiPlayerInteraction test helper', () => {
   describe('playerPropsBuilder', () => {
     it('should be defined', () => {
       expect(playerPropsBuilder).toBeDefined();
