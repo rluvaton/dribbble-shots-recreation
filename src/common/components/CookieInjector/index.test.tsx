@@ -115,7 +115,7 @@ describe('CookieInjector', () => {
 
     // Assert
     const acceptButton = screen.queryByText('Accept');
-    expect(acceptButton).not.toBeVisible();
+    expect(acceptButton).not.toBeInTheDocument();
 
     expect(scriptTags).toHaveLength(1);
 
