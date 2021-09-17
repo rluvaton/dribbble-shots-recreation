@@ -1,0 +1,18 @@
+.shotContainer {
+  height: inherit;
+
+  > .component {
+    height: inherit;
+  }
+
+  > .info {
+    position: absolute;
+
+    width: fit-content;
+    bottom: 26px;
+    left: 30px;
+
+    font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  }
+}

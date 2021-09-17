@@ -11,5 +11,12 @@ export interface Shot {
   // The Dribbble Shot
   originalShotLink?: string;
 
+  author: {
+    name: string;
+
+    // Link to the Profile of the author in Dribbble
+    link: string;
+  }
+
   createComponent: (preview?: boolean) => ReactElement;
 }

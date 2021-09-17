@@ -5,10 +5,9 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { allShots } from './pages/shots';
 import PageRoute from './common/components/PageRoute';
 import CookieInjector from './common/components/CookieInjector';
+import ShotContainer from './pages/shots/ShotContainer';
 
 function App() {
-  const routes = allShots.map(({ id, link, createComponent, name }) => ({ id, link, createComponent, name }))
-
   return (
     <Router>
       <>
@@ -19,8 +18,10 @@ function App() {
           </PageRoute>
 
           {
-            routes.map(({ id, link, createComponent, name }) =>
-              <PageRoute key={id} exact path={link} title={name}>{createComponent()}</PageRoute>)
+            allShots.map((shot) =>
+              <PageRoute key={shot.id} exact path={shot.link} title={shot.name}>
+                <ShotContainer shot={shot}/>
+              </PageRoute>)
           }
 
           <Route path="*">

@@ -41,5 +41,27 @@ describe('Shots', () => {
       }
     });
 
+    it('every shot should have all its data', () => {
+      for (const shot of allShots) {
+
+        // Assert
+        expect(shot).toBeObject();
+        expect(typeof shot.id).toEqual('string');
+        expect(typeof shot.name).toEqual('string');
+        expect(typeof shot.description).toEqual('string');
+        expect(typeof shot.link).toEqual('string');
+
+        expect(typeof shot.originalShotLink).toEqual('string');
+        expect(shot.createComponent).toBeFunction();
+
+        // null will return false although it valid (but we still check that because we don't wanna return null
+        expect(React.isValidElement(shot.createComponent())).toBeTrue();
+        expect(React.isValidElement(shot.createComponent(true))).toBeTrue();
+
+        expect(shot.author).toBeObject();
+        expect(typeof shot.author.name).toEqual('string');
+        expect(typeof shot.author.link).toEqual('string');
+      }
+    });
   });
 });
