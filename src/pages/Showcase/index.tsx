@@ -9,7 +9,7 @@ const { Title } = Typography;
 const { Header, Content } = Layout;
 
 
-const ShowcasePage: React.FC = () => {
+const Showcase: React.FC = () => {
   return (
     <Layout className={styles.layout}>
 
@@ -29,4 +29,4 @@ const ShowcasePage: React.FC = () => {
   );
 }
 
-export default ShowcasePage;
+export default Showcase;

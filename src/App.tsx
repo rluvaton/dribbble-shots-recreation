@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ShowcasePage from './pages/showcase';
+import Showcase from './pages/Showcase';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { allShots } from './pages/shots';
 import PageRoute from './common/components/PageRoute';
@@ -14,7 +14,7 @@ function App() {
         <Switch>
 
           <PageRoute exact path="/" title="Dribbble Shots Recreation">
-            <ShowcasePage/>
+            <Showcase/>
           </PageRoute>
 
           {
