@@ -10,7 +10,7 @@ interface DesignedByProps {
 
 const DesignedBy: React.FC<DesignedByProps> = ({ author, link }) => {
   return (
-    <span>Designed by <Link href={link}>{author}</Link></span>
+    <span>Designed by <Link href={link} title="link to the designer profile">{author}</Link></span>
   )
 }
 

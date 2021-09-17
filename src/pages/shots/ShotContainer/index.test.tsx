@@ -10,7 +10,7 @@ describe('ShotContainer', () => {
     expect(ShotContainer).toBeDefined();
   });
 
-  it('should render the component and display the author name and the dribbble icon', () => {
+  it('should render the component and display the author name and the dribbble icon and the github icon', () => {
     // Arrange
     const shotComponentTestId = 'shot-component';
     const shot: Shot = shotBuilder({
@@ -18,6 +18,8 @@ describe('ShotContainer', () => {
         createComponent: (() => <div data-testid={shotComponentTestId}/>) as any,
       },
     });
+
+    console.log(shot);
 
     // Act
     const {container } = render(<ShotContainer shot={shot} />);
@@ -28,6 +30,12 @@ describe('ShotContainer', () => {
     screen.getByText(shot.author.name);
 
     const links = getAllHrefInContainer(container);
-    expect(links).toIncludeSameMembers([shot.author.link, shot.originalShotLink]);
+    expect(links).toHaveLength(3);
+
+    expect(links).toContain(shot.author.link);
+    expect(links).toContain(shot.originalShotLink);
+
+    const githubIcon = screen.getByTitle(/github/i);
+    expect(githubIcon).toHaveAttribute('href', `https://github.com/rluvaton/dribbble-shots-recreation/tree/main/${shot.directoryPath}`)
   });
 });

@@ -14,6 +14,9 @@ describe('shotBuilder', () => {
     expect(typeof shot.description).toEqual('string');
     expect(typeof shot.link).toEqual('string');
 
+    expect(typeof shot.directoryPath).toEqual('string');
+    expect(shot.directoryPath).toStartWith('src/pages/shots/');
+
     expect(typeof shot.originalShotLink).toEqual('string');
     expect(shot.createComponent).toBeFunction();
     expect(isReactFragment(shot.createComponent())).toBeTruthy();

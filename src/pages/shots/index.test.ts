@@ -52,6 +52,12 @@ describe('Shots', () => {
         expect(typeof shot.link).toEqual('string');
 
         expect(typeof shot.originalShotLink).toEqual('string');
+        expect(typeof shot.directoryPath).toEqual('string');
+
+        // Make sure the path is not empty and contain the shots directory
+        expect(__dirname).toInclude('shots');
+        expect(shot.directoryPath).toStartWith(__dirname);
+
         expect(shot.createComponent).toBeFunction();
 
         // null will return false although it valid (but we still check that because we don't wanna return null

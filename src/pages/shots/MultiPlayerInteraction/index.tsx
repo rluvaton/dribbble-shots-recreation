@@ -69,12 +69,15 @@ export const shot: Shot = {
   name: 'Multi-player interaction',
   description: '',
   link: '/multi-player-interaction',
-  createComponent: (preview) => <MultiPlayerInteraction preview={preview}/>,
+  directoryPath: __dirname,
   originalShotLink: 'https://dribbble.com/shots/11568643-Multi-player-interaction',
+  createComponent: (preview) => <MultiPlayerInteraction preview={preview}/>,
   author: {
     name: 'Mauricio Bucardo',
     link: 'https://dribbble.com/maubucardo',
   },
 }
+
+console.log(shot);
 
 export default MultiPlayerInteraction;

@@ -1,6 +1,7 @@
+import React from 'react';
 import { build, fake, perBuild, sequence } from '@jackfranklin/test-data-bot';
 import { Shot } from '../common/interfaces/shot';
-import React from 'react';
+import faker from 'faker';
 
 export const shotBuilder = build<Shot>('Shot', {
   fields: {
@@ -8,6 +9,7 @@ export const shotBuilder = build<Shot>('Shot', {
     name: fake(f => f.name.title()),
     description: fake(f => f.lorem.paragraph()),
     link: fake(f => `/${f.internet.domainWord()}`),
+    directoryPath: fake(() => `src/pages/shots${faker.system.directoryPath()}`),
 
     author: fake(f => ({
       name: f.name.findName(),
