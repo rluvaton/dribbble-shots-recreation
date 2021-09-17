@@ -22,9 +22,14 @@ describe('shotBuilder', () => {
     expect(typeof shot.name).toEqual('string');
     expect(typeof shot.description).toEqual('string');
     expect(typeof shot.link).toEqual('string');
+
     expect(typeof shot.originalShotLink).toEqual('string');
     expect(typeof shot.createComponent).toEqual('function');
     expect(isReactFragment(shot.createComponent())).toBeTruthy();
+
+    expect(typeof shot.author).toEqual('object');
+    expect(typeof shot.author.name).toEqual('string');
+    expect(typeof shot.author.link).toEqual('string');
   });
 });
 

@@ -8,6 +8,12 @@ export const shotBuilder = build<Shot>('Shot', {
     name: fake(f => f.name.title()),
     description: fake(f => f.lorem.paragraph()),
     link: fake(f => `/${f.internet.domainWord()}`),
+
+    author: fake(f => ({
+      name: f.name.findName(),
+      link: `${f.internet.url()}/`,
+    })),
+
     originalShotLink: fake(f => `${f.internet.url()}/`),
 
     // We cast it to any as the value must be either string or Field (internal @jackfranklin/test-data-bot type) although it can access functions

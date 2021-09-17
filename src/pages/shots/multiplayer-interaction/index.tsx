@@ -71,6 +71,10 @@ export const shot: Shot = {
   link: '/multi-player-interaction',
   createComponent: (preview) => <MultiPlayerInteraction preview={preview}/>,
   originalShotLink: 'https://dribbble.com/shots/11568643-Multi-player-interaction',
+  author: {
+    name: 'Mauricio Bucardo',
+    link: 'https://dribbble.com/maubucardo',
+  },
 }
 
 export default MultiPlayerInteraction;
