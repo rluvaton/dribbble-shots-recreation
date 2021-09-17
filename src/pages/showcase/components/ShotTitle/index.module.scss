@@ -3,7 +3,7 @@
   align-items: center;
 
   > .shotLink {
-    // Without this the `a` element won't be the same height as the icon (caused by antd card)
+    // Without this the `a` element won't be the same height as the icon (caused by antd card and/or the link)
     line-height: 1;
 
     margin-right: 5px;
