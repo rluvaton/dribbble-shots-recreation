@@ -48,7 +48,7 @@ const CookieInjector = () => {
   // We're not using the `onAcceptButtonClick` function because it's good only for the first time.
   // We need to check if the `allow-cookies` exist after the user pressed accept and reloaded the page (for example)
   // And the function only called when clicking accept...
-  return allowCookies ? <CookieNotice/> : null;
+  return allowCookies ? null : <CookieNotice/>;
 }
 
 export default CookieInjector;
