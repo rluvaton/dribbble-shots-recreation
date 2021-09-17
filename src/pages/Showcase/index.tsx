@@ -8,7 +8,6 @@ import GitHubIconButton from '../../common/components/GitHubIconButton';
 const { Title } = Typography;
 const { Header, Content } = Layout;
 
-
 const Showcase: React.FC = () => {
   return (
     <Layout className={styles.layout}>

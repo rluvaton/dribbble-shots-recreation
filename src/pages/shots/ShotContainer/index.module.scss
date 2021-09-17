@@ -27,12 +27,22 @@
       opacity: 1;
     }
 
+    > .shotLink,
+    .githubButton {
+      margin-right: 10px;
+    }
 
     > .shotLink {
       // force the `a` element be the same height as the icon (caused by the antd Link)
       line-height: 1;
+    }
 
-      margin-right: 10px;
+    .githubButton {
+      font-size: 20px;
+
+      // Making the icon really 20px
+      padding-bottom: 0;
+      border-width: 0;
     }
   }
 }

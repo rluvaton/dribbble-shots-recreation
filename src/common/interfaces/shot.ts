@@ -8,6 +8,10 @@ export interface Shot {
   // Link inside the website
   link?: string;
 
+  // Path to the file
+  // e.g. src/pages/shots/MultiPlayerInteraction
+  directoryPath: string;
+
   // The Dribbble Shot
   originalShotLink?: string;
 
