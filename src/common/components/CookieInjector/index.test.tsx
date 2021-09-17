@@ -93,7 +93,7 @@ describe('CookieInjector', () => {
 
     expect(spiedLoadInCookieLoader).toHaveBeenCalled();
 
-    expect(acceptButton).not.toBeVisible();
+    expect(acceptButton).not.toBeInTheDocument();
   });
 
   it(`should add the script tag when the 'allow-cookies' cookie is already true and the Accept button should be invisible`, async () => {
