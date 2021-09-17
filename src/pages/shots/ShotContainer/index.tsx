@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import { Shot } from '../../../common/interfaces/shot';
-import DesignedBy from '../shared/DesignedBy';
+import DesignedBy from './components/DesignedBy';
 
 interface ShotContainerProps {
   shot: Shot

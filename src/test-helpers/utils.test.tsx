@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { getAllHrefInContainer } from './utils';
+import { getAllHrefInContainer, isReactFragment } from './utils';
 import React from 'react';
 import faker from 'faker';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
@@ -74,6 +74,97 @@ describe('utils', () => {
 
       // Assert
       expect(allLinkElements).toEqual(links);
+    });
+  });
+
+  describe('isReactFragment', () => {
+    it('should return true when passing <></>', () => {
+      // Arrange
+      const node = <></>;
+
+      // Act
+      const result = isReactFragment(node);
+
+      // Assert
+      expect(result).toBeTrue();
+    });
+    it('should return true when non-empty <></>', () => {
+      // Arrange
+      const node = <>{faker.datatype.string()}</>;
+
+      // Act
+      const result = isReactFragment(node);
+
+      // Assert
+      expect(result).toBeTrue();
+    });
+
+    it('should return true when passing <React.Fragment></React.Fragment>', () => {
+      // Arrange
+      // noinspection CheckTagEmptyBody
+      const node = <React.Fragment></React.Fragment>;
+
+      // Act
+      const result = isReactFragment(node);
+
+      // Assert
+      expect(result).toBeTrue();
+    });
+
+    it('should return true when passing <React.Fragment />', () => {
+      // Arrange
+      const node = <React.Fragment />;
+
+      // Act
+      const result = isReactFragment(node);
+
+      // Assert
+      expect(result).toBeTrue();
+    });
+
+    it('should return true when passing non empty React.Fragment', () => {
+      // Arrange
+      const node = <React.Fragment>{faker.datatype.string()}</React.Fragment>;
+
+      // Act
+      const result = isReactFragment(node);
+
+      // Assert
+      expect(result).toBeTrue();
+    });
+
+    it('should return false when passing div', () => {
+      // Arrange
+      // noinspection CheckTagEmptyBody
+      const div = <div></div>;
+
+      // Act
+      const result = isReactFragment(div);
+
+      // Assert
+      expect(result).toBeFalse();
+    });
+
+    it('should return false when passing null', () => {
+      // Arrange
+      const node = null;
+
+      // Act
+      const result = isReactFragment(node);
+
+      // Assert
+      expect(result).toBeFalse();
+    });
+
+    it('should return false when passing object', () => {
+      // Arrange
+      const object = JSON.parse(faker.datatype.json());
+
+      // Act
+      const result = isReactFragment(object);
+
+      // Assert
+      expect(result).toBeFalse();
     });
   });
 });
