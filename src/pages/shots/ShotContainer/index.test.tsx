@@ -10,7 +10,7 @@ describe('ShotContainer', () => {
     expect(ShotContainer).toBeDefined();
   });
 
-  it('should render the component display the author name', () => {
+  it('should render the component and display the author name and the dribbble icon', () => {
     // Arrange
     const shotComponentTestId = 'shot-component';
     const shot: Shot = shotBuilder({
@@ -28,6 +28,6 @@ describe('ShotContainer', () => {
     screen.getByText(shot.author.name);
 
     const links = getAllHrefInContainer(container);
-    expect(links).toEqual([shot.author.link]);
+    expect(links).toIncludeSameMembers([shot.author.link, shot.originalShotLink]);
   });
 });
