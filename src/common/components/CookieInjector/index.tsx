@@ -42,10 +42,13 @@ const CookieInjector = () => {
     CookiesLoader.load();
   }, [setShouldLoadCookies, allowCookies, googleAnalyticsScriptLoadedState]);
 
+  // until https://github.com/xavierbriole/react-cookienotice/pull/73 get merged we do this hack
+  // so it won't block the UI
+  //
   // We're not using the `onAcceptButtonClick` function because it's good only for the first time.
   // We need to check if the `allow-cookies` exist after the user pressed accept and reloaded the page (for example)
   // And the function only called when clicking accept...
-  return <CookieNotice/>;
+  return allowCookies ? <CookieNotice/> : null;
 }
 
 export default CookieInjector;
