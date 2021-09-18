@@ -78,6 +78,4 @@ export const shot: Shot = {
   },
 }
 
-console.log(shot);
-
 export default MultiPlayerInteraction;
