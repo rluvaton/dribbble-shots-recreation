@@ -1,1 +1,7 @@
 @import '~antd/dist/antd.css';
+
+/* By default Antd line height isn't 1 to solve some issues (https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less#L106-L107)*/
+/* Doing this helper class for quick fix when we do want that (e.g. when using icons and span */
+.regular-line-height {
+  line-height: 1;
+}

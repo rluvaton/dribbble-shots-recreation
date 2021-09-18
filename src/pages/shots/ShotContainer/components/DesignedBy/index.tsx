@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from 'antd';
 
-const { Link } = Typography;
+const { Link, Text } = Typography;
 
 interface DesignedByProps {
   author: string;
@@ -10,7 +10,7 @@ interface DesignedByProps {
 
 const DesignedBy: React.FC<DesignedByProps> = ({ author, link }) => {
   return (
-    <span>Designed by <Link href={link} title="link to the designer profile">{author}</Link></span>
+    <Text>Designed by <Link href={link} title="link to the designer profile">{author}</Link></Text>
   )
 }
 

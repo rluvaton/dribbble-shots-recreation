@@ -27,20 +27,20 @@
       opacity: 1;
     }
 
-    > .shotLink,
-    .githubButton {
+    > .iconContainer {
       margin-right: 10px;
     }
 
-    > .shotLink {
-      // force the `a` element be the same height as the icon (caused by the antd Link)
-      line-height: 1;
+    > .homeLink {
+      color: black;
+    }
+
+    .icon {
+      font-size: 20px;
     }
 
     .githubButton {
-      font-size: 20px;
-
-      // Making the icon really 20px
+      // Making the icon really it's size
       padding-bottom: 0;
       border-width: 0;
     }
