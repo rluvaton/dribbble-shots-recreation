@@ -42,5 +42,14 @@
       bottom: 50px;
     }
   }
+
+  > .pagesIndicator {
+    position: absolute;
+
+    // Center it in the middle
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
 }
 

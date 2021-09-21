@@ -4,6 +4,7 @@ import { Shot } from '../../../common/interfaces/shot';
 import ComingSoonText from './components/ComingSoonText';
 import NavBar from './components/NavBar';
 import DownArrowIcon from './components/DownArrowIcon';
+import PageIndicator from './components/PageIndicator';
 
 const ComingSoon: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   const progress = 74;
@@ -17,9 +18,12 @@ const ComingSoon: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
         <span className={styles.progressText}>{progress}%</span>
       </div>
 
-      {/*<PagesIndicator/>*/}
+      <div className={styles.pagesIndicator}>
+        <PageIndicator/>
+      </div>
+
       <div className={styles.arrowContainer}>
-        <DownArrowIcon />
+        <DownArrowIcon/>
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
 @use '../../shared/styles/colors' as colors;
+@import '../../../../../common/styles/mixins';
 
 .icon {
+  @include clickable;
+
   font-size: 50px;
 
   height: 1em;
@@ -13,9 +16,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  // Make it look like it can be pressed
-  cursor: pointer;
 
   &::before {
     content: "";

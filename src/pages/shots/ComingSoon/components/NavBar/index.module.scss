@@ -1,4 +1,5 @@
 @use '../../shared/styles/colors' as colors;
+@import '../../../../../common/styles/mixins';
 
 .menu {
   display: flex;
@@ -26,6 +27,8 @@
   font-weight: 300;
 
   > .item {
+    @include clickable;
+
     // This animation would happen when you're on smartphone and rotating it to be horizontal and vice versa
     transition: margin-right 0.5s ease;
 
@@ -44,9 +47,6 @@
 
     mix-blend-mode: normal;
     opacity: 0.8;
-
-    // Make it look like it can be pressed
-    cursor: pointer;
 
     &[data-selected=true] {
       opacity: 1;
