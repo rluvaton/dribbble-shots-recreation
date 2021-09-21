@@ -18,18 +18,22 @@
     mix-blend-mode: normal;
     opacity: 0.8;
 
-    &[data-selected=true] {
+    // Make it look like it can be pressed
+    cursor: pointer;
+
+    // Highlight the first item ("How soon") as selected one
+    &:first-child {
       opacity: 1;
 
       color: colors.$primary;
 
-      &:after {
-        // Add line below
+      // Add active tab indication line below
+      &::after {
+        content: "";
 
         display: block;
 
-        width: 16px;
-        height: 1px;
+        height: 1.5px;
         background-color: colors.$primary;
       }
     }
