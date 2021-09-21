@@ -1,5 +1,5 @@
 @use 'shared/styles/colors' as colors;
-@import 'https://fonts.googleapis.com/css2?family=Lato&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap';
 
 
 .page {
@@ -24,6 +24,13 @@
       color: colors.$primary;
 
       width: fit-content;
+
+      margin-top: 32px;
+
+      font: {
+        size: 16px;
+        weight: 300;
+      }
     }
   }
 

@@ -23,6 +23,8 @@
     }
   }
 
+  font-weight: 300;
+
   > .item {
     // This animation would happen when you're on smartphone and rotating it to be horizontal and vice versa
     transition: margin-right 0.5s ease;
