@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import styles from './index.module.scss';
 
 export interface ComingSoonTextProps {
@@ -7,23 +7,13 @@ export interface ComingSoonTextProps {
 
 
 const ComingSoonText: React.FC<ComingSoonTextProps> = ({ progress }) => {
-  const [progressWidth, setProgressWidth] = useState('fit-content');
-  const behindDivRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if(!behindDivRef.current) {
-      return;
-    }
-
-    setProgressWidth(`${behindDivRef.current.offsetWidth * (progress / 100)}px`);
-  }, [progress]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.full} style={{
-        width: progressWidth,
-      }}>COMING SOON</div>
-      <div ref={behindDivRef} className={styles.behind}>COMING SOON</div>
+      <span className={styles.full} style={{
+        width: `${progress ?? 100}%`,
+      }}>COMING SOON</span>
+      <span className={styles.behind}>COMING SOON</span>
     </div>
   );
 }

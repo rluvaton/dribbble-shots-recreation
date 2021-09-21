@@ -2,15 +2,19 @@
 
 .container {
 
-  position: relative;
+  width: fit-content;
+
+  // This and the `grid-area` are for making the text overlay
+  // Previously, we used `position: relative` and `absolute` on the children, this made problem with the width
+  // And we needed to dynamically calculate the width in pixels, but now it's much easier
+  // From https://stackoverflow.com/a/55475793/5923666
+  display: grid;
 
   > .full,
   > .behind {
-    position: absolute;
-    font-size: 5em;
+    grid-area: 1 / 1;
 
-    /* supported on DIVs */
-    white-space: nowrap;
+    font-size: 5em;
 
     width: fit-content;
   }
@@ -20,6 +24,9 @@
     width: fit-content;
     overflow: hidden;
     z-index: 1;
+
+    // This will make the text kept on the same line and not break when the width is not enough to fill it
+    white-space: nowrap;
 
     // Add animation when progress changed
     transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
