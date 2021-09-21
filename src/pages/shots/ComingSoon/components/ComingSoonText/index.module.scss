@@ -1,0 +1,31 @@
+@use '../../shared/styles/colors' as colors;
+
+.container {
+
+  position: relative;
+
+  > .full,
+  > .behind {
+    position: absolute;
+    font-size: 5em;
+
+    /* supported on DIVs */
+    white-space: nowrap;
+
+    width: fit-content;
+  }
+
+  > .full {
+    color: colors.$primary;
+    width: fit-content;
+    overflow: hidden;
+    z-index: 1;
+
+    // Add animation when progress changed
+    transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  > .behind {
+    color: colors.$secondary;
+  }
+}
