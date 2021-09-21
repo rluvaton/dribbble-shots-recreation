@@ -5,9 +5,7 @@ export interface ComingSoonTextProps {
   progress: number;
 }
 
-
 const ComingSoonText: React.FC<ComingSoonTextProps> = ({ progress }) => {
-
   return (
     <div className={styles.container}>
       <span className={styles.full} style={{
