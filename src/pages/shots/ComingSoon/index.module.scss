@@ -8,6 +8,9 @@
 
   height: 100%;
 
+  min-width: 374px;
+  min-height: 236px;
+
   display: flex;
   flex-direction: column;
 
@@ -25,7 +28,16 @@
 
       width: fit-content;
 
+      // This animation would happen when you're on smartphone and rotating it to be horizontal and vice versa
+      transition: margin-top 0.5s ease;
+
       margin-top: 32px;
+
+      @media screen and (max-width: 850px) and (max-height: 400px) {
+        & {
+          margin-top: 0;
+        }
+      }
 
       font: {
         size: 16px;
@@ -44,7 +56,8 @@
   }
 
   > .pagesIndicator {
-    position: absolute;
+    // So it will be fixed :) to the right even when scrolling
+    position: fixed;
 
     // Center it in the middle
     top: 50%;
