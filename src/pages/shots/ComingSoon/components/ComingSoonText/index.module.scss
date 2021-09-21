@@ -5,8 +5,11 @@
   width: fit-content;
 
   // This and the `grid-area` are for making the text overlay
-  // Previously, we used `position: relative` and `absolute` on the children, this made problem with the width
-  // And we needed to dynamically calculate the width in pixels, but now it's much easier
+  // Previously, we used `position: relative` and `absolute` on the children, this create problem with:
+  // - The layout (because of parent width)
+  // - Children width: we needed to dynamically calculate the width in pixels of the masked tex
+  // but now it's much easier
+  //
   // From https://stackoverflow.com/a/55475793/5923666
   display: grid;
 
