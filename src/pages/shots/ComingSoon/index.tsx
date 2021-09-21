@@ -3,20 +3,23 @@ import styles from './index.module.scss';
 import { Shot } from '../../../common/interfaces/shot';
 import ComingSoonText from './components/ComingSoonText';
 import NavBar from './components/NavBar';
+import DownArrowIcon from './components/DownArrowIcon';
 
 const ComingSoon: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
+  const progress = 74;
+
   return (
     <div className={styles.page}>
       <NavBar/>
-      <div>
-        <div>
-          <ComingSoonText progress={74}/>
-          <span className={styles.progressText}>74%</span>
-        </div>
-        {/*<PagesIndicator/>*/}
+
+      <div className={styles.comingSoonContainer}>
+        <ComingSoonText progress={progress}/>
+        <span className={styles.progressText}>{progress}%</span>
       </div>
-      <div>
-        arrow
+
+      {/*<PagesIndicator/>*/}
+      <div className={styles.arrowContainer}>
+        <DownArrowIcon />
       </div>
     </div>
   );

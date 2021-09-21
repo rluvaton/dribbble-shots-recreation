@@ -4,20 +4,22 @@
   display: flex;
   flex-direction: row;
 
-  // This is so no space is created for the element in the page layout.
-  position: fixed;
-  top: 32px;
-  left: 32px;
+  margin: {
+    top: 32px;
+    left: 32px;
+  }
 
   // This animation would happen when you're on smartphone and rotating it to be horizontal and vice versa
   transition: all 0.5s ease;
   // This is overriding the `all` in the transition above
-  transition-property: top, left;
+  transition-property: margin-top, margin-left;
 
   @media screen and (max-width: 400px) {
     & {
-      top: 20px;
-      left: 20px;
+      margin: {
+        top: 20px;
+        left: 20px;
+      }
     }
   }
 

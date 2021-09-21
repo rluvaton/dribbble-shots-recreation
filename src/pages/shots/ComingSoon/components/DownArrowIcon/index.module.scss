@@ -1,0 +1,38 @@
+@use '../../shared/styles/colors' as colors;
+
+.icon {
+  font-size: 50px;
+
+  height: 1em;
+  width: 1em;
+
+  border-radius: 50%;
+  border: 2px solid colors.$primary;
+
+  // Align the arrow in the middle
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Make it look like it can be pressed
+  cursor: pointer;
+
+  &::before {
+    content: "";
+
+    height: 24%;
+    width: 24%;
+
+    // Make the arrow be at the center of the horizontal line
+    top: 43%;
+
+    // The arrow itself
+    border-left: 2px solid colors.$primary;
+    border-bottom: 2px solid colors.$primary;
+
+    // Align the arrow in the middle and make it face down
+    // The order DOES matter, if we rotating it and then moving it, it will be moved in the bottom right direction
+    // because the axes (i.e X and Y axes) been rotated
+    transform: translateY(-25%) rotate(-45deg);
+  }
+}

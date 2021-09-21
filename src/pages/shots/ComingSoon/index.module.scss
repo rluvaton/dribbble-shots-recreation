@@ -1,4 +1,6 @@
+@use 'shared/styles/colors' as colors;
 @import 'https://fonts.googleapis.com/css2?family=Lato&display=swap';
+
 
 .page {
   background-color: white;
@@ -8,4 +10,30 @@
 
   display: flex;
   flex-direction: column;
+
+  .comingSoonContainer {
+    display: flex;
+    flex-direction: column;
+
+    // Really in the center of the page cause the navbar is in fixed position
+    margin: auto;
+
+    align-items: center;
+
+    > .progressText {
+      color: colors.$primary;
+
+      width: fit-content;
+    }
+  }
+
+  .arrowContainer {
+    margin: {
+      left: auto;
+      right: auto;
+
+      bottom: 50px;
+    }
+  }
 }
+
