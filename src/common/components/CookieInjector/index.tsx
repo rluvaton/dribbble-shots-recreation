@@ -3,8 +3,8 @@ import useScript, { ScriptLoadingState } from '../../hooks/useScript';
 import React, { useEffect } from 'react';
 import * as CookiesLoader from './cookies-loader';
 
-// @ts-ignore There is no types for this library ¯\_(ツ)_/¯ (https://github.com/xavierbriole/react-cookienotice/issues/71)
-import CookieNotice from 'react-cookienotice'
+import CookieNotice from 'react-cookienotice';
+import 'react-cookienotice/dist/index.css';
 
 const CookieInjector = () => {
   const allowCookies = useSingleCookie({
@@ -42,13 +42,10 @@ const CookieInjector = () => {
     CookiesLoader.load();
   }, [setShouldLoadCookies, allowCookies, googleAnalyticsScriptLoadedState]);
 
-  // until https://github.com/xavierbriole/react-cookienotice/pull/73 get merged we do this hack
-  // so it won't block the UI
-  //
   // We're not using the `onAcceptButtonClick` function because it's good only for the first time.
   // We need to check if the `allow-cookies` exist after the user pressed accept and reloaded the page (for example)
   // And the function only called when clicking accept...
-  return allowCookies ? null : <CookieNotice/>;
+  return <CookieNotice/>;
 }
 
 export default CookieInjector;
