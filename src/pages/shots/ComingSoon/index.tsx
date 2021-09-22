@@ -10,7 +10,7 @@ const ComingSoon: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   const progress = 74;
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} data-preview={preview}>
       <NavBar/>
 
       <div className={styles.comingSoonContainer}>

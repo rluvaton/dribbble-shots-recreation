@@ -8,11 +8,37 @@
 
   height: 100%;
 
-  min-width: 374px;
-  min-height: 236px;
 
   display: flex;
   flex-direction: column;
+
+  &[data-preview=false] {
+    // We use zoom out on preview so it will look OK-ish
+    // so if we're not in the preview - force the size to fit everything
+    min-width: 374px;
+    min-height: 236px;
+  }
+
+  &[data-preview=true] {
+    zoom: 0.4;
+
+    position: relative;
+
+    > .pagesIndicator {
+      // This is so the div won't be outside of the preview component
+      position: absolute;
+    }
+  }
+
+  > .pagesIndicator {
+    // So it will be fixed :) to the right even when scrolling
+    position: fixed;
+
+    // Center it in the middle
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
 
   .comingSoonContainer {
     display: flex;
@@ -55,14 +81,5 @@
     }
   }
 
-  > .pagesIndicator {
-    // So it will be fixed :) to the right even when scrolling
-    position: fixed;
-
-    // Center it in the middle
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-  }
 }
 
