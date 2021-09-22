@@ -39,7 +39,7 @@
     "antd": "^4.16.12",
     "js-cookie": "^3.0.1",
     "react": "^17.0.2",
-    "react-cookienotice": "^3.8.0",
+    "react-cookienotice": "^4.0.0",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
