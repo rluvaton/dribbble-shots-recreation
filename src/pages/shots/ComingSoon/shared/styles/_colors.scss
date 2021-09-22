@@ -1,0 +1,8 @@
+/*
+We've added prefix `_` (underscore) because:
+
+> [...] As a convention, Sass files that are only meant to be imported, not compiled on their own [...]"
+> From https://sass-lang.com/documentation/at-rules/import#partials
+ */
+$primary: #7199FF;
+$secondary: #E3EBFF;

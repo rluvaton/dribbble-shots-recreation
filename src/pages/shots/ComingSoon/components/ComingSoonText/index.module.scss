@@ -1,0 +1,54 @@
+@use '../../shared/styles/colors' as colors;
+
+.container {
+
+  width: fit-content;
+
+  // This and the `grid-area` are for making the text overlay
+  // Previously, we used `position: relative` and `absolute` on the children, this create problem with:
+  // - The layout (because of parent width)
+  // - Children width: we needed to dynamically calculate the width in pixels of the masked tex
+  // but now it's much easier
+  //
+  // From https://stackoverflow.com/a/55475793/5923666
+  display: grid;
+
+  > .full,
+  > .behind {
+    grid-area: 1 / 1;
+
+    // This animation would happen when you're on smartphone and rotating it to be horizontal and vice versa
+    transition: font-size 0.5s ease,
+      // Add animation when progress changed
+    width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    font-size: 5em;
+
+    @media screen and (max-width: 568px) {
+      & {
+        font-size: 3em;
+      }
+    }
+
+    width: fit-content;
+
+    // Don't allow selection of the text:
+    // If we allow in BOTH texts then you select the same text twice
+    // If we allow ONLY in the full it's very hard to select text
+    user-select: none;
+  }
+
+  > .full {
+    color: colors.$primary;
+    width: 0;
+    overflow: hidden;
+    z-index: 1;
+
+    // This will make the text kept on the same line and not break when the width is not enough to fill it
+    white-space: nowrap;
+  }
+
+  > .behind {
+    color: colors.$secondary;
+  }
+}

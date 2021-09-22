@@ -1,0 +1,67 @@
+@use '../../shared/styles/colors' as colors;
+@import '../../../../../common/styles/mixins';
+
+.menu {
+  display: flex;
+  flex-direction: row;
+
+  margin: {
+    top: 32px;
+    left: 32px;
+  }
+
+  // This animation would happen when you're on smartphone and rotating it to be horizontal and vice versa
+  transition: all 0.5s ease;
+  // This is overriding the `all` in the transition above
+  transition-property: margin-top, margin-left;
+
+  @media screen and (max-width: 400px) {
+    & {
+      margin: {
+        top: 20px;
+        left: 20px;
+      }
+    }
+  }
+
+  font-weight: 300;
+
+  > span {
+    @include clickable;
+
+    // This animation would happen when you're on smartphone and rotating it to be horizontal and vice versa
+    transition: margin-right 0.5s ease;
+
+    margin-right: 32px;
+
+    @media screen and (max-width: 400px) {
+      & {
+        // This is so the text (i.e How soon) won't break into 2 lines
+        margin-right: 20px;
+      }
+    }
+
+    font-size: 16px;
+
+    color: #252632;
+
+    mix-blend-mode: normal;
+    opacity: 0.8;
+
+    &[data-selected=true] {
+      opacity: 1;
+
+      color: colors.$primary;
+
+      // Add active tab indication line below
+      &::after {
+        content: "";
+
+        display: block;
+
+        height: 1.5px;
+        background-color: colors.$primary;
+      }
+    }
+  }
+}
