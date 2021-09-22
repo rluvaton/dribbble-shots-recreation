@@ -54,7 +54,7 @@
 
     // Fix #37 - background not filling the whole page
     // Could be fixed by setting the background on the body but prefer not to do it as it is only needed in one page
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .showcaseContainer {
       display: grid;
