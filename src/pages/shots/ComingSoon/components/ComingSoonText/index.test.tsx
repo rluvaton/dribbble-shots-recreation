@@ -42,12 +42,13 @@ describe('ComingSoonText', () => {
     getActualComingSoonTextElements();
   });
 
-  it('when progress is 0 the text above should have width: 0', () => {
+  it('when progress is 0 the text above should have width: 0 and aria-valuenow: 0', () => {
     // Arrange
     const progress = 0;
 
     // Act
     render(<ComingSoonText progress={progress}/>);
+
     act(() => {
       jest.runAllTimers();
     });
@@ -62,6 +63,8 @@ describe('ComingSoonText', () => {
     expect(progressText).toHaveStyle({
       width: '0%',
     });
+
+    expect(progressText).toHaveAttribute('aria-valuenow', progress + '');
   });
 
   it('when progress is greater than 0 than the text above should have width: 0 and then after timeout the width with the progress', () => {
@@ -77,6 +80,7 @@ describe('ComingSoonText', () => {
     expect(progressText).toHaveStyle({
       width: '0%',
     });
+    expect(progressText).toHaveAttribute('aria-valuenow', progress + '');
 
     // Act (again)
     // We need to trigger the progress update
@@ -88,5 +92,6 @@ describe('ComingSoonText', () => {
     expect(progressText).toHaveStyle({
       width: `${progress}%`,
     });
+    expect(progressText).toHaveAttribute('aria-valuenow', progress + '');
   });
 });

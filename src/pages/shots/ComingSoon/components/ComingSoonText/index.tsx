@@ -20,7 +20,7 @@ const ComingSoonText: React.FC<ComingSoonTextProps> = ({ progress }) => {
   return (
     <div className={styles.container}>
       <span className={styles.behind}>COMING SOON</span>
-      <span className={styles.full} style={{ width }}>COMING SOON</span>
+      <span aria-valuenow={progress} className={styles.full} style={{ width }}>COMING SOON</span>
     </div>
   );
 }
