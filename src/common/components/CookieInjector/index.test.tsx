@@ -61,7 +61,7 @@ describe('CookieInjector', () => {
     expect(spiedLoadInCookieLoader).not.toHaveBeenCalled();
   });
 
-  it('should have the Accept button and when clicking Accept should add the script tag and call load from CookiesLoader and hide the button', () => {
+  it('should have the Accept button and when clicking Accept should add the script tag and call load from CookiesLoader and remove the Accept button', () => {
     // Arrange
     const { CookieInjector, CookiesLoader } = getCookieInjector();
     const spiedLoadInCookieLoader = jest.spyOn(CookiesLoader, 'load');
@@ -96,7 +96,7 @@ describe('CookieInjector', () => {
     expect(acceptButton).not.toBeInTheDocument();
   });
 
-  it(`should add the script tag when the 'allow-cookies' cookie is already true and the Accept button should be invisible`, async () => {
+  it(`should add the script tag when the 'allow-cookies' cookie is already true and the Accept button should not exist`, async () => {
     // Arrange
     Cookies.set('allow-cookies', 'true');
 
