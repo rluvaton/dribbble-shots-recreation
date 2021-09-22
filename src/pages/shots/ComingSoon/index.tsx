@@ -6,6 +6,10 @@ import NavBar from './components/NavBar';
 import DownArrowIcon from './components/DownArrowIcon';
 import PageIndicator from './components/PageIndicator';
 
+// Implementation note:
+// If this wasn't just a recreation we would need to share the same NavBar pages and the selected page with the PageIndicator
+// We would probably lift the state up or use MobX
+
 const ComingSoon: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   // In the original shot the progress is really 76, but with that progress the text fill is not at the same position
   // So we prefer better filling then the same progress value
