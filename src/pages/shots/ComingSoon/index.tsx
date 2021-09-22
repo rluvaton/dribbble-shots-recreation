@@ -7,6 +7,8 @@ import DownArrowIcon from './components/DownArrowIcon';
 import PageIndicator from './components/PageIndicator';
 
 const ComingSoon: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
+  // In the original shot the progress is really 76, but with that progress the text fill is not at the same position
+  // So we prefer better filling then the same progress value
   const progress = 74;
 
   return (
