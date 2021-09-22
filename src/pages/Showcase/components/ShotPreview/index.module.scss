@@ -1,9 +1,5 @@
 .card {
 
-  //max-width: 300px;
-  //margin-left: auto;
-  //margin-right: auto;
-
   display: flex;
   flex-direction: column;
 
@@ -11,6 +7,8 @@
   // https://github.com/css-modules/css-modules/issues/79#issuecomment-200297626
   :global {
     .ant-card-cover {
+      border-bottom: 1px solid #e8e8e8;
+
       // We want the card cover to fill the entire card but still have space for the body
       // Not using height here because it will make the body be outside of the card
       flex: 1;
